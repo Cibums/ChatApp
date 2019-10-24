@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace SQLRegistration
 {
-    class Connection
+    static class Connection
     {
-        public string GetConnectionString
+        public static MySqlConnection connection = new MySqlConnection(GetConnectionString);
+
+        public static string GetConnectionString
         {
             get{
                 //Server Information

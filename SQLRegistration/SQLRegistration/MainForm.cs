@@ -18,30 +18,14 @@ namespace SQLRegistration
 
         public int userID; //Logged in user ID
 
-        MySqlConnection con = new MySqlConnection();
         MySqlCommand command = new MySqlCommand();
         MySqlDataReader reader;
-        Connection connection = new Connection();
         private bool isConnectedToServer = true; //Supposes that the connection will work
         private int activeConversationID = -1;
 
         public MainForm()
         {
             InitializeComponent();
-
-            //Create a connection to the database
-            con = new MySqlConnection(connection.GetConnectionString);
-
-            //Trying to open the connection
-            try
-            {
-                con.Open();
-            }
-            catch
-            {
-                isConnectedToServer = false;
-                MessageBox.Show("Not connected to the server!", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -116,7 +100,7 @@ namespace SQLRegistration
 
                 //Creates SQL-query
                 String sql = @"SELECT * FROM `users` WHERE `username`='" + aff.usernameInput + @"'";
-                command = new MySqlCommand(sql, con);
+                command = new MySqlCommand(sql, Connection.connection);
                 reader = command.ExecuteReader(); //Executes the query
                 reader.Read();
 
@@ -127,7 +111,7 @@ namespace SQLRegistration
                     //Updates the friend list
                     String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" + reader[6] + " " + reader[0].ToString() + "' WHERE `username`='" + Controller.controller.GetAccount(userID).username + "';";
                     reader.Close();
-                    command = new MySqlCommand(updateFriendSql, con);
+                    command = new MySqlCommand(updateFriendSql, Connection.connection);
                     reader = command.ExecuteReader(); //Executes the query
                 }
 

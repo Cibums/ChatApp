@@ -16,10 +16,8 @@ namespace SQLRegistration
     {
         //
         //Variables
-        MySqlConnection con = new MySqlConnection();
         MySqlCommand command = new MySqlCommand();
         MySqlDataReader reader;
-        Connection connection = new Connection();
         public bool isConnectedToServer = true;
 
         public static Controller controller;
@@ -36,12 +34,10 @@ namespace SQLRegistration
                 controller = this;
             }
 
-            con = new MySqlConnection(connection.GetConnectionString);
-
             //Trying to open the connection
             try
             {
-                con.Open();
+                Connection.connection.Open();
             }
             catch
             {
@@ -68,7 +64,7 @@ namespace SQLRegistration
 
             //
             String sql = @"SELECT * FROM `users` WHERE `username`='"+ usernameInput + @"' OR `email`='"+ emailInput + @"';";
-            command = new MySqlCommand(sql, con);
+            command = new MySqlCommand(sql, Connection.connection);
             reader = command.ExecuteReader(); //Execute query
             reader.Read();
 
@@ -109,7 +105,7 @@ namespace SQLRegistration
 
             //Create a SQL-query that inserts user information
             sql = @"INSERT INTO users(username, password, email, firstname, lastname, frienduserIDsString) VALUES ('" + (usernameInput).ToLower() + "','" + HashPassword(passwordInput) + "','" + emailInput + "','" + firstNameInput + "','" + lastNameInput + "','" + "" + "')";
-            command = new MySqlCommand(sql, con);
+            command = new MySqlCommand(sql, Connection.connection);
             reader = command.ExecuteReader(); //Execute query
             reader.Close();
 
@@ -196,7 +192,7 @@ namespace SQLRegistration
 
             //Create SQL-query (gets the users with spcific username)
             String sql = @"SELECT * FROM `users` WHERE `username`='" + usernameInput + @"'";
-            command = new MySqlCommand(sql, con);
+            command = new MySqlCommand(sql, Connection.connection);
             reader = command.ExecuteReader(); //Executes the query
             reader.Read();
             
@@ -265,7 +261,7 @@ namespace SQLRegistration
         {
             //Creates SQL-query, selectes logged in user's id
             String sql = @"SELECT * FROM `conversations`;";
-            command = new MySqlCommand(sql, con);
+            command = new MySqlCommand(sql, Connection.connection);
             reader = command.ExecuteReader(); //Executes the query
 
             List<Conversation> conversations = new List<Conversation>();
@@ -318,7 +314,7 @@ namespace SQLRegistration
         {
             //Creates SQL-query, selectes conversation with name
             String sql = @"SELECT * FROM `conversations` WHERE `name`='"+conversationName+"';";
-            command = new MySqlCommand(sql, con);
+            command = new MySqlCommand(sql, Connection.connection);
             reader = command.ExecuteReader(); //Executes the query
             reader.Read();
 
@@ -355,7 +351,7 @@ namespace SQLRegistration
         {
             //Creates SQL-query, selectes logged in user's id
             String sql = @"SELECT `frienduserIDsString` FROM `users` WHERE `ID`='" + userID + @"'";
-            command = new MySqlCommand(sql, con);
+            command = new MySqlCommand(sql, Connection.connection);
             reader = command.ExecuteReader(); //Executes the query
             reader.Read();
 
@@ -400,7 +396,7 @@ namespace SQLRegistration
 
             //Creates SQL-query, selectes user with specific ID
             String sql = @"SELECT * FROM `users` WHERE `ID`='" + ID.ToString() + @"'";
-            command = new MySqlCommand(sql, con);
+            command = new MySqlCommand(sql, Connection.connection);
 
             try
             {
