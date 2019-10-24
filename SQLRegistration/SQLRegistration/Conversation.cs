@@ -10,5 +10,6 @@ namespace SQLRegistration
     {
         public string conversationName;
         public List<int> usersInConversation;
+
     }
 }
