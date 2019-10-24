@@ -34,6 +34,11 @@ namespace SQLRegistration
                 controller = this;
             }
 
+            if (Conversation.conversations == null)
+            {
+                Conversation.conversations = new Conversation();
+            }
+
             //Trying to open the connection
             try
             {
