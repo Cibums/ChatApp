@@ -14,6 +14,7 @@ namespace SQLRegistration
 {
     public class Controller
     {
+        //
         //Variables
         MySqlConnection con = new MySqlConnection();
         MySqlCommand command = new MySqlCommand();
