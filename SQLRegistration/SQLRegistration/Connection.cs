@@ -1,15 +1,14 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SQLRegistration
 {
     static class Connection
     {
         public static MySqlConnection connection = new MySqlConnection(GetConnectionString);
+        public static bool isConnectedToTheServer = false; //Assumes that the connection won't work
+        public static MySqlCommand command;
+        public static MySqlDataReader reader;
 
         public static string GetConnectionString
         {

@@ -62,18 +62,20 @@
             this.registerPanel.Controls.Add(this.registrationPasswordTextBox);
             this.registerPanel.Controls.Add(this.label4);
             this.registerPanel.Controls.Add(this.registrationUsernameTextBox);
-            this.registerPanel.Location = new System.Drawing.Point(32, 211);
+            this.registerPanel.Location = new System.Drawing.Point(24, 171);
+            this.registerPanel.Margin = new System.Windows.Forms.Padding(2);
             this.registerPanel.Name = "registerPanel";
-            this.registerPanel.Size = new System.Drawing.Size(308, 393);
+            this.registerPanel.Size = new System.Drawing.Size(231, 319);
             this.registerPanel.TabIndex = 6;
             // 
             // loginLinkLabel
             // 
             this.loginLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.loginLinkLabel.AutoSize = true;
-            this.loginLinkLabel.Location = new System.Drawing.Point(-2, 264);
+            this.loginLinkLabel.Location = new System.Drawing.Point(-2, 214);
+            this.loginLinkLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.loginLinkLabel.Name = "loginLinkLabel";
-            this.loginLinkLabel.Size = new System.Drawing.Size(214, 17);
+            this.loginLinkLabel.Size = new System.Drawing.Size(168, 13);
             this.loginLinkLabel.TabIndex = 6;
             this.loginLinkLabel.TabStop = true;
             this.loginLinkLabel.Text = "I ALREADY HAVE AN ACCOUNT";
@@ -82,18 +84,20 @@
             // 
             this.RegistrationLastNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RegistrationLastNameTextBox.Location = new System.Drawing.Point(163, 223);
+            this.RegistrationLastNameTextBox.Location = new System.Drawing.Point(122, 181);
+            this.RegistrationLastNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.RegistrationLastNameTextBox.Name = "RegistrationLastNameTextBox";
-            this.RegistrationLastNameTextBox.Size = new System.Drawing.Size(144, 22);
+            this.RegistrationLastNameTextBox.Size = new System.Drawing.Size(109, 20);
             this.RegistrationLastNameTextBox.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(159, 195);
+            this.label7.Location = new System.Drawing.Point(119, 158);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(125, 25);
+            this.label7.Size = new System.Drawing.Size(100, 20);
             this.label7.TabIndex = 9;
             this.label7.Text = "LAST NAME:";
             // 
@@ -101,18 +105,20 @@
             // 
             this.RegistrationFirstNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RegistrationFirstNameTextBox.Location = new System.Drawing.Point(1, 223);
+            this.RegistrationFirstNameTextBox.Location = new System.Drawing.Point(1, 181);
+            this.RegistrationFirstNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.RegistrationFirstNameTextBox.Name = "RegistrationFirstNameTextBox";
-            this.RegistrationFirstNameTextBox.Size = new System.Drawing.Size(144, 22);
+            this.RegistrationFirstNameTextBox.Size = new System.Drawing.Size(109, 20);
             this.RegistrationFirstNameTextBox.TabIndex = 3;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(-5, 195);
+            this.label6.Location = new System.Drawing.Point(-4, 158);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(130, 25);
+            this.label6.Size = new System.Drawing.Size(103, 20);
             this.label6.TabIndex = 7;
             this.label6.Text = "FIRST NAME:";
             // 
@@ -120,18 +126,20 @@
             // 
             this.RegistrationEmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RegistrationEmailTextBox.Location = new System.Drawing.Point(1, 158);
+            this.RegistrationEmailTextBox.Location = new System.Drawing.Point(1, 128);
+            this.RegistrationEmailTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.RegistrationEmailTextBox.Name = "RegistrationEmailTextBox";
-            this.RegistrationEmailTextBox.Size = new System.Drawing.Size(306, 22);
+            this.RegistrationEmailTextBox.Size = new System.Drawing.Size(230, 20);
             this.RegistrationEmailTextBox.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(-5, 130);
+            this.label5.Location = new System.Drawing.Point(-4, 106);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 25);
+            this.label5.Size = new System.Drawing.Size(59, 20);
             this.label5.TabIndex = 5;
             this.label5.Text = "EMAIL:";
             // 
@@ -142,9 +150,10 @@
             this.registerButton.BackgroundImage = global::SQLRegistration.Properties.Resources.chatappcolours;
             this.registerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.registerButton.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.registerButton.Location = new System.Drawing.Point(0, 316);
+            this.registerButton.Location = new System.Drawing.Point(0, 257);
+            this.registerButton.Margin = new System.Windows.Forms.Padding(2);
             this.registerButton.Name = "registerButton";
-            this.registerButton.Size = new System.Drawing.Size(307, 77);
+            this.registerButton.Size = new System.Drawing.Size(230, 63);
             this.registerButton.TabIndex = 5;
             this.registerButton.Text = "REGISTER";
             this.registerButton.UseVisualStyleBackColor = true;
@@ -154,9 +163,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(-5, 65);
+            this.label3.Location = new System.Drawing.Point(-4, 53);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 25);
+            this.label3.Size = new System.Drawing.Size(99, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "PASSWORD:";
             // 
@@ -164,19 +174,21 @@
             // 
             this.registrationPasswordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.registrationPasswordTextBox.Location = new System.Drawing.Point(1, 93);
+            this.registrationPasswordTextBox.Location = new System.Drawing.Point(1, 76);
+            this.registrationPasswordTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.registrationPasswordTextBox.Name = "registrationPasswordTextBox";
             this.registrationPasswordTextBox.PasswordChar = '*';
-            this.registrationPasswordTextBox.Size = new System.Drawing.Size(306, 22);
+            this.registrationPasswordTextBox.Size = new System.Drawing.Size(230, 20);
             this.registrationPasswordTextBox.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(-5, 0);
+            this.label4.Location = new System.Drawing.Point(-4, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 25);
+            this.label4.Size = new System.Drawing.Size(97, 20);
             this.label4.TabIndex = 1;
             this.label4.Text = "USERNAME:";
             // 
@@ -184,9 +196,10 @@
             // 
             this.registrationUsernameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.registrationUsernameTextBox.Location = new System.Drawing.Point(1, 28);
+            this.registrationUsernameTextBox.Location = new System.Drawing.Point(1, 23);
+            this.registrationUsernameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.registrationUsernameTextBox.Name = "registrationUsernameTextBox";
-            this.registrationUsernameTextBox.Size = new System.Drawing.Size(306, 22);
+            this.registrationUsernameTextBox.Size = new System.Drawing.Size(230, 20);
             this.registrationUsernameTextBox.TabIndex = 0;
             // 
             // pictureBox1
@@ -195,21 +208,24 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::SQLRegistration.Properties.Resources.chatapplogopng;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(372, 177);
+            this.pictureBox1.Size = new System.Drawing.Size(279, 144);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             // 
             // RegisterForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(372, 636);
+            this.ClientSize = new System.Drawing.Size(279, 517);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.registerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register | Chat App";

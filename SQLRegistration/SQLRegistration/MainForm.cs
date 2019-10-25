@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
@@ -17,10 +11,6 @@ namespace SQLRegistration
         //Variables
 
         public int userID; //Logged in user ID
-
-        MySqlCommand command = new MySqlCommand();
-        MySqlDataReader reader;
-        private bool isConnectedToServer = true; //Supposes that the connection will work
         private int activeConversationID = -1;
 
         public MainForm()
@@ -31,9 +21,9 @@ namespace SQLRegistration
         private void MainForm_Load(object sender, EventArgs e)
         {
             //Updates the UI to the correct user information
-            UpdateUserInformation(Controller.controller.GetAccount(userID));
+            UpdateUserInformation(Account.accounts.GetAccount(userID));
 
-            List<int> friends = Controller.controller.GetFriends(userID);
+            List<int> friends = Account.accounts.GetFriends(userID);
 
             if (friends != null)
             {
@@ -42,8 +32,6 @@ namespace SQLRegistration
                     MessageBox.Show(i.ToString());
                 }
             }
-
-            
         }
 
         public void GenerateConversations()
@@ -69,7 +57,7 @@ namespace SQLRegistration
         //When form is shown
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            foreach (Conversation conv in Controller.controller.GetConversations(userID))
+            foreach (Conversation conv in Conversation.conversations.GetConversations(userID))
             {
                 conversationList.Items.Add(conv.conversationName);
             }
@@ -100,22 +88,22 @@ namespace SQLRegistration
 
                 //Creates SQL-query
                 String sql = @"SELECT * FROM `users` WHERE `username`='" + aff.usernameInput + @"'";
-                command = new MySqlCommand(sql, Connection.connection);
-                reader = command.ExecuteReader(); //Executes the query
-                reader.Read();
+                Connection.command = new MySqlCommand(sql, Connection.connection);
+                Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+                Connection.reader.Read();
 
-                if (reader.HasRows) //Checks if the table has any rows (if there are any users with that username)
+                if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users with that username)
                 {
                     
 
                     //Updates the friend list
-                    String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" + reader[6] + " " + reader[0].ToString() + "' WHERE `username`='" + Controller.controller.GetAccount(userID).username + "';";
-                    reader.Close();
-                    command = new MySqlCommand(updateFriendSql, Connection.connection);
-                    reader = command.ExecuteReader(); //Executes the query
+                    String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" + Connection.reader[6] + " " + Connection.reader[0].ToString() + "' WHERE `username`='" + Account.accounts.GetAccount(userID).username + "';";
+                    Connection.reader.Close();
+                    Connection.command = new MySqlCommand(updateFriendSql, Connection.connection);
+                    Connection.reader = Connection.command.ExecuteReader(); //Executes the query
                 }
 
-                reader.Close();
+                Connection.reader.Close();
             }
         }
 
@@ -146,7 +134,7 @@ namespace SQLRegistration
                     return;
                 }
 
-                activeConversationID = Controller.controller.GetConversationID(myList.SelectedItems[0].Text);
+                activeConversationID = Conversation.conversations.GetConversationID(myList.SelectedItems[0].Text);
             }
 
             conversationList.Visible = false;

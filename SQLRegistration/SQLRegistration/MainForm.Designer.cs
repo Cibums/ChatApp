@@ -50,28 +50,30 @@
             this.logOutToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(372, 28);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.menuStrip.Size = new System.Drawing.Size(314, 24);
             this.menuStrip.TabIndex = 3;
             this.menuStrip.Text = "menuStrip";
             // 
             // homeToolStripMenuItem
             // 
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.homeToolStripMenuItem.Text = "Home";
             this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
             // 
             // addFriendToolStripMenuItem
             // 
             this.addFriendToolStripMenuItem.Name = "addFriendToolStripMenuItem";
-            this.addFriendToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
+            this.addFriendToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.addFriendToolStripMenuItem.Text = "Add Friend";
             this.addFriendToolStripMenuItem.Click += new System.EventHandler(this.addFriendToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.logOutToolStripMenuItem.Text = "Log Out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
@@ -83,10 +85,11 @@
             this.conversationList.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.conversationList.FullRowSelect = true;
             this.conversationList.GridLines = true;
-            this.conversationList.Location = new System.Drawing.Point(12, 44);
+            this.conversationList.Location = new System.Drawing.Point(9, 36);
+            this.conversationList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.conversationList.MultiSelect = false;
             this.conversationList.Name = "conversationList";
-            this.conversationList.Size = new System.Drawing.Size(348, 398);
+            this.conversationList.Size = new System.Drawing.Size(297, 324);
             this.conversationList.TabIndex = 4;
             this.conversationList.TileSize = new System.Drawing.Size(228, 36);
             this.conversationList.UseCompatibleStateImageBehavior = false;
@@ -95,27 +98,33 @@
             // 
             // messagesList
             // 
+            this.messagesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.messagesList.Location = new System.Drawing.Point(0, 0);
+            this.messagesList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.messagesList.Name = "messagesList";
-            this.messagesList.Size = new System.Drawing.Size(345, 369);
+            this.messagesList.Size = new System.Drawing.Size(297, 301);
             this.messagesList.TabIndex = 5;
             this.messagesList.UseCompatibleStateImageBehavior = false;
             // 
             // messageTextBox
             // 
             this.messageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.messageTextBox.Location = new System.Drawing.Point(0, 376);
+            this.messageTextBox.Location = new System.Drawing.Point(0, 306);
+            this.messageTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(236, 22);
+            this.messageTextBox.Size = new System.Drawing.Size(178, 20);
             this.messageTextBox.TabIndex = 6;
             // 
             // sendMessageButton
             // 
             this.sendMessageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.sendMessageButton.BackColor = System.Drawing.Color.White;
-            this.sendMessageButton.Location = new System.Drawing.Point(243, 375);
+            this.sendMessageButton.Location = new System.Drawing.Point(217, 305);
+            this.sendMessageButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.sendMessageButton.Name = "sendMessageButton";
-            this.sendMessageButton.Size = new System.Drawing.Size(105, 23);
+            this.sendMessageButton.Size = new System.Drawing.Size(79, 19);
             this.sendMessageButton.TabIndex = 7;
             this.sendMessageButton.Text = "SEND";
             this.sendMessageButton.UseVisualStyleBackColor = false;
@@ -130,25 +139,27 @@
             this.conversationPanel.Controls.Add(this.messageTextBox);
             this.conversationPanel.Controls.Add(this.messagesList);
             this.conversationPanel.Controls.Add(this.sendMessageButton);
-            this.conversationPanel.Location = new System.Drawing.Point(12, 44);
+            this.conversationPanel.Location = new System.Drawing.Point(9, 36);
+            this.conversationPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.conversationPanel.Name = "conversationPanel";
-            this.conversationPanel.Size = new System.Drawing.Size(348, 398);
+            this.conversationPanel.Size = new System.Drawing.Size(296, 323);
             this.conversationPanel.TabIndex = 8;
             this.conversationPanel.Visible = false;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::SQLRegistration.Properties.Resources.chatappcolours;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(372, 454);
+            this.ClientSize = new System.Drawing.Size(314, 369);
             this.Controls.Add(this.conversationPanel);
             this.Controls.Add(this.conversationList);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChatApp";

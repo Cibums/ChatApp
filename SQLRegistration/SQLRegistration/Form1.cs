@@ -26,9 +26,7 @@ namespace SQLRegistration
         public Form1()
         {
             InitializeComponent();
-            //Creates the controller
-            Controller.controller = new Controller();
-            Controller.controller.Start(); //Calling the start function
+            
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -48,6 +46,26 @@ namespace SQLRegistration
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Creates the controller
+            Controller.controller = new Controller();
+            Account.accounts = new Account();
+            Conversation.conversations = new Conversation();
+
+            //Trying to open the connection
+            try
+            {
+                Connection.connection.Open();
+                Connection.isConnectedToTheServer = true;
+            }
+            catch
+            {
+                //If the connection to the server isn't there, tell the user
+
+                Connection.isConnectedToTheServer = false;
+
+                MessageBox.Show("Not connected to the server! Follow readme.txt", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             //Creates other forms and making them reachable from the controller class
 
             Controller.controller.loginForm = this;
@@ -59,7 +77,7 @@ namespace SQLRegistration
             Controller.controller.mainForm = mainForm;
 
             //If there is no connection to the server, close the whole application (all forms)
-            if (!Controller.controller.isConnectedToServer)
+            if (!Connection.isConnectedToTheServer)
             {
                 Application.Exit();
             }
@@ -77,12 +95,12 @@ namespace SQLRegistration
         {
             //Gets the saved account ID
 
-            int savedID = Controller.controller.GetSavedAccountID();
+            int savedID = Account.accounts.GetSavedAccountID();
 
             //If there was an account saved, try to log in to the saved account
             if (savedID != -1)
             {
-                Account acc = Controller.controller.GetAccount(savedID);
+                Account acc = Account.accounts.GetAccount(savedID);
 
                 try
                 {
@@ -93,7 +111,7 @@ namespace SQLRegistration
                     MessageBox.Show("Couldn't Log In With Saved ID");
                 }
 
-                
+
             }
         }
 
