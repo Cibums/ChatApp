@@ -229,7 +229,6 @@
             this.Name = "RegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register | Chat App";
-            this.Load += new System.EventHandler(this.RegisterForm_Load);
             this.registerPanel.ResumeLayout(false);
             this.registerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

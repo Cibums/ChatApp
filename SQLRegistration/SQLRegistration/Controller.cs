@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Security.Cryptography;
+using System.Collections.Generic;
 
 namespace SQLRegistration
 {
@@ -19,9 +20,7 @@ namespace SQLRegistration
 
         public bool Register(string usernameInput, string passwordInput, string emailInput, string firstNameInput, string lastNameInput)
         {
-            //Registers user
-
-            
+            //Registers user 
 
             //
             String sql = @"SELECT * FROM `users` WHERE `username`='"+ usernameInput + @"' OR `email`='"+ emailInput + @"';";

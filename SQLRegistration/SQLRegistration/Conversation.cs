@@ -46,8 +46,6 @@ namespace SQLRegistration
 
                 conv.usersInConversation = users;
 
-
-
                 foreach (int id in conv.usersInConversation)
                 {
                     if (id == userID)
@@ -55,14 +53,10 @@ namespace SQLRegistration
                         conversations.Add(conv);
                     }
                 }
-
-
             }
 
             Connection.reader.Close();
             return conversations;
-
-
         }
 
         public int GetConversationID(string conversationName)

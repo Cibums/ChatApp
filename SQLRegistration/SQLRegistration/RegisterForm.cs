@@ -36,11 +36,6 @@ namespace SQLRegistration
             }
         }
 
-        private void RegisterForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
