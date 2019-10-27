@@ -32,7 +32,7 @@ namespace SQLRegistration
         private void loginButton_Click(object sender, EventArgs e)
         {
             //Tries to Log In
-            Controller.controller.Login(usernameTextBox.Text, Controller.controller.HashPassword(passwordTextBox.Text));
+            Controller.Login(usernameTextBox.Text, Controller.HashPassword(passwordTextBox.Text));
             
         }
 
@@ -46,12 +46,6 @@ namespace SQLRegistration
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Message<Image>.Send(new Image(@"https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg"), 0);
-
-            //Creates the controller
-            Controller.controller = new Controller();
-            Account.accounts = new Account();
-            Conversation.conversations = new Conversation();
 
             //Trying to open the connection
             try
@@ -70,20 +64,19 @@ namespace SQLRegistration
 
             //Creates other forms and making them reachable from the controller class
 
-            Controller.controller.loginForm = this;
+            Controller.loginForm = this;
 
             RegisterForm rf = new RegisterForm();
-            Controller.controller.registerForm = rf;
+            Controller.registerForm = rf;
 
             MainForm mainForm = new MainForm();
-            Controller.controller.mainForm = mainForm;
+            Controller.mainForm = mainForm;
 
             //If there is no connection to the server, close the whole application (all forms)
             if (!Connection.isConnectedToTheServer)
             {
                 Application.Exit();
             }
-
             
         }
 
@@ -93,20 +86,20 @@ namespace SQLRegistration
             Application.Exit();
         }
 
-        private void Form1_Shown(object sender, EventArgs e)
+        public static void LoginToSavedAccount()
         {
             //Gets the saved account ID
 
-            int savedID = Account.accounts.GetSavedAccountID();
+            int savedID = Account.GetSavedAccountID();
 
             //If there was an account saved, try to log in to the saved account
             if (savedID != -1)
             {
-                Account acc = Account.accounts.GetAccount(savedID);
+                Account acc = Account.GetAccount(savedID);
 
                 try
                 {
-                    Controller.controller.Login(acc.username, acc.password);
+                    Controller.Login(acc.username, acc.password);
                 }
                 catch
                 {
@@ -115,6 +108,11 @@ namespace SQLRegistration
 
 
             }
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            LoginToSavedAccount();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)

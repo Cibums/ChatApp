@@ -9,6 +9,7 @@ namespace SQLRegistration
         public static bool isConnectedToTheServer = false; //Assumes that the connection won't work
         public static MySqlCommand command;
         public static MySqlDataReader reader;
+        public static int loggedInUserID = -1;
 
         public static string GetConnectionString
         {

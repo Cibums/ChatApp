@@ -19,9 +19,7 @@ namespace SQLRegistration
         public string lastname;
         public string friendsUserIDs;
 
-        public static Account accounts;
-
-        public Account GetAccount(int ID)
+        public static Account GetAccount(int ID)
         {
             //Varibales
             string username;
@@ -77,7 +75,7 @@ namespace SQLRegistration
 
         }
 
-        public bool IsValidUsername(string username)
+        public static bool IsValidUsername(string username)
         {
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
 
@@ -90,7 +88,7 @@ namespace SQLRegistration
             return !isTooLong(username, 8);
         }
 
-        public bool IsValidPassword(string password)
+        public static bool IsValidPassword(string password)
         {
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
 
@@ -104,12 +102,12 @@ namespace SQLRegistration
 
             foreach (char c in password)
             {
-                if (Controller.controller.IsLetter(c))
+                if (Controller.IsLetter(c))
                 {
                     isLetter = true;
                 }
 
-                if (Controller.controller.IsDigit(c))
+                if (Controller.IsDigit(c))
                 {
                     isDigit = true;
                 }
@@ -123,7 +121,7 @@ namespace SQLRegistration
             return false;
         }
 
-        public bool IsValidEmail(string email)
+        public static bool IsValidEmail(string email)
         {
             //Checks if email is an actual email
             try
@@ -137,7 +135,7 @@ namespace SQLRegistration
             }
         }
 
-        public int GetSavedAccountID()
+        public static int GetSavedAccountID()
         {
             //Checks if there is a saved account
             if (File.Exists(Application.LocalUserAppDataPath + @"\a.ca"))
@@ -146,8 +144,11 @@ namespace SQLRegistration
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream fs = new FileStream(Application.LocalUserAppDataPath + @"\a.ca", FileMode.Open);
                 int acc = (int)bf.Deserialize(fs);
+                fs.Close();
                 return acc;
             }
+
+            
 
             //Didn't find a saved accoun
 
@@ -155,11 +156,18 @@ namespace SQLRegistration
             return -1;
         }
 
-        public List<int> GetFriends(int userID)
+        public static List<int> GetFriends(int userID)
         {
             //Creates SQL-query, selectes logged in user's id
             String sql = @"SELECT `frienduserIDsString` FROM `users` WHERE `ID`='" + userID + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
+
+            try
+            {
+                Connection.reader.Close();
+            }
+            catch { }
+
             Connection.reader = Connection.command.ExecuteReader(); //Executes the query
             Connection.reader.Read();
 

@@ -10,9 +10,10 @@ namespace SQLRegistration
         public string conversationName;
         public List<int> usersInConversation;
 
-        public static Conversation conversations;
+        //public static Conversation conversations;
+        public static int activeConversationID = -1;
 
-        public List<Conversation> GetConversations(int userID)
+        public static List<Conversation> GetConversations(int userID)
         {
             //Creates SQL-query, selectes logged in user's id
             String sql = @"SELECT * FROM `conversations`;";
@@ -59,7 +60,7 @@ namespace SQLRegistration
             return conversations;
         }
 
-        public int GetConversationID(string conversationName)
+        public static int GetConversationID(string conversationName)
         {
             //Creates SQL-query, selectes conversation with name
             String sql = @"SELECT * FROM `conversations` WHERE `name`='" + conversationName + "';";

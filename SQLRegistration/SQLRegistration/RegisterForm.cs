@@ -29,7 +29,7 @@ namespace SQLRegistration
         private void registerButton_Click(object sender, EventArgs e)
         {
             //Registers user
-            if(Controller.controller.Register(registrationUsernameTextBox.Text, registrationPasswordTextBox.Text, RegistrationEmailTextBox.Text, RegistrationFirstNameTextBox.Text, RegistrationLastNameTextBox.Text))
+            if(Controller.Register(registrationUsernameTextBox.Text, registrationPasswordTextBox.Text, RegistrationEmailTextBox.Text, RegistrationFirstNameTextBox.Text, RegistrationLastNameTextBox.Text))
             {
                 //If registration succeeded, hide this form
                 Hide();

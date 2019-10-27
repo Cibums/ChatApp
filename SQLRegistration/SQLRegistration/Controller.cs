@@ -9,16 +9,14 @@ using System.Collections.Generic;
 
 namespace SQLRegistration
 {
-    public class Controller
+    public static class Controller
     {
-        public static Controller controller;
-
         //Forms
-        public Form1 loginForm;
-        public RegisterForm registerForm;
-        public MainForm mainForm;
+        public static Form1 loginForm;
+        public static RegisterForm registerForm;
+        public static MainForm mainForm;
 
-        public bool Register(string usernameInput, string passwordInput, string emailInput, string firstNameInput, string lastNameInput)
+        public static bool Register(string usernameInput, string passwordInput, string emailInput, string firstNameInput, string lastNameInput)
         {
             //Registers user 
 
@@ -47,19 +45,19 @@ namespace SQLRegistration
 
             Connection.reader.Close();
 
-            if (!Account.accounts.IsValidUsername(usernameInput))
+            if (!Account.IsValidUsername(usernameInput))
             {
                 MessageBox.Show("USERNAME CAN'T USE SPECIAL CHARACTERS OR CAN'T BE LONGER THAN 8 CHARACTERS");
                 return false;
             }
 
-            if (!Account.accounts.IsValidEmail(emailInput))
+            if (!Account.IsValidEmail(emailInput))
             {
                 MessageBox.Show("INVALID EMAIL ADRESS");
                 return false;
             }
 
-            if (!Account.accounts.IsValidPassword(passwordInput))
+            if (!Account.IsValidPassword(passwordInput))
             {
                 MessageBox.Show("PASSWORD HAS TO CONTAIN AT LEAST ONE CAPITAL LETTER AND ONE NUMBER AND CAN'T USE SPECIAL CHARACTERS");
                 return false;
@@ -76,7 +74,7 @@ namespace SQLRegistration
             return true;
         }
 
-        public string HashPassword(string password)
+        public static string HashPassword(string password)
         {
             HashAlgorithm algorithm = SHA256.Create();
             byte[] hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(password));
@@ -88,17 +86,17 @@ namespace SQLRegistration
             return sb.ToString();
         }
 
-        public bool IsLetter(char c)
+        public static bool IsLetter(char c)
         {
             return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
         }
 
-        public bool IsDigit(char c)
+        public static bool IsDigit(char c)
         {
             return c >= '0' && c <= '9';
         }
 
-        public bool Login(string usernameInput, string passwordInput)
+        public static bool Login(string usernameInput, string passwordInput)
         {
 
             //If there's no connection to the server, return false
@@ -120,7 +118,10 @@ namespace SQLRegistration
                 if (usernameInput == (Connection.reader[1].ToString()).ToLower() && passwordInput == Connection.reader[2].ToString())
                 {
                     //Login Succeeded
-                    LoginSucceeded(Int32.Parse(Connection.reader[0].ToString()));
+
+                    int id = Int32.Parse(Connection.reader[0].ToString());
+
+                    LoginSucceeded(id);
                     Connection.reader.Close();
 
                     return true;
@@ -143,10 +144,10 @@ namespace SQLRegistration
             return false;
         }
 
-        public void LoginSucceeded(int userID)
+        public static void LoginSucceeded(int userID)
         {
             //Sets the userID variable to the ID of the logged in user
-            mainForm.userID = userID;
+            Connection.loggedInUserID = userID;
             //Shows Main Form
             mainForm.Show();
 
@@ -163,6 +164,8 @@ namespace SQLRegistration
             //Hides the other forms
             registerForm.Hide();
             loginForm.Hide();
+
+            mainForm.UpdateUserInformation(Account.GetAccount(userID));
         }
 
         

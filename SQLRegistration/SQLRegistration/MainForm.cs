@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Drawing;
+using System.Diagnostics;
 
 namespace SQLRegistration
 {
     public partial class MainForm : Form
     {
-        //Variables
-
-        public int userID; //Logged in user ID
-        private int activeConversationID = -1;
-
         public MainForm()
         {
             InitializeComponent();
@@ -20,10 +17,8 @@ namespace SQLRegistration
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //Updates the UI to the correct user information
-            UpdateUserInformation(Account.accounts.GetAccount(userID));
 
-            List<int> friends = Account.accounts.GetFriends(userID);
+            List<int> friends = Account.GetFriends(Connection.loggedInUserID);
 
             if (friends != null)
             {
@@ -39,8 +34,14 @@ namespace SQLRegistration
 
         }
 
-        void UpdateUserInformation(Account account)
+        public void UpdateUserInformation(Account account)
         {
+            //If there's already a user specific button: delete it before creating new
+            if (menuStrip.Items.Count >= 4)
+            {
+                menuStrip.Items.RemoveAt(0);
+            }
+
             //Adds button in menustrip that reads the logged in users full name
             ToolStripMenuItem tsmi = new ToolStripMenuItem();
             tsmi.Text = account.firstname + " " + account.lastname;
@@ -57,7 +58,7 @@ namespace SQLRegistration
         //When form is shown
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            foreach (Conversation conv in Conversation.conversations.GetConversations(userID))
+            foreach (Conversation conv in Conversation.GetConversations(Connection.loggedInUserID))
             {
                 conversationList.Items.Add(conv.conversationName);
             }
@@ -97,7 +98,7 @@ namespace SQLRegistration
                     
 
                     //Updates the friend list
-                    String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" + Connection.reader[6] + " " + Connection.reader[0].ToString() + "' WHERE `username`='" + Account.accounts.GetAccount(userID).username + "';";
+                    String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" + Connection.reader[6] + " " + Connection.reader[0].ToString() + "' WHERE `username`='" + Account.GetAccount(Connection.loggedInUserID).username + "';";
                     Connection.reader.Close();
                     Connection.command = new MySqlCommand(updateFriendSql, Connection.connection);
                     Connection.reader = Connection.command.ExecuteReader(); //Executes the query
@@ -109,17 +110,17 @@ namespace SQLRegistration
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Console.Write(Connection.loggedInUserID);
+
             if (File.Exists(Application.LocalUserAppDataPath + @"\a.ca"))
             {
-                try
-                {
-                    File.Delete(Application.LocalUserAppDataPath + @"\a.ca");
-                }
-                catch { }
+                File.Delete(Application.LocalUserAppDataPath + @"\a.ca");
             }
+ 
+            Connection.loggedInUserID = -1;
 
-            Controller.controller.loginForm.Show();
-            userID = -1;
+            Controller.loginForm.Show();
+
             Hide();
         }
 
@@ -134,7 +135,7 @@ namespace SQLRegistration
                     return;
                 }
 
-                activeConversationID = Conversation.conversations.GetConversationID(myList.SelectedItems[0].Text);
+                Conversation.activeConversationID = Conversation.GetConversationID(myList.SelectedItems[0].Text);
             }
 
             conversationList.Visible = false;
@@ -153,6 +154,23 @@ namespace SQLRegistration
             conversationPanel.Visible = false;
             conversationList.Visible = true;
 
+        }
+
+        private void SelectImageButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog open = new OpenFileDialog();
+                open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    Process.Start(open.FileName);
+                }
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Failed loading image");
+            }
         }
     }
 }
