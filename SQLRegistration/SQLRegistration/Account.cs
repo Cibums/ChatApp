@@ -10,7 +10,6 @@ namespace SQLRegistration
 {
     public class Account
     {
-        //
         //Account information variables
 
         public string username;
