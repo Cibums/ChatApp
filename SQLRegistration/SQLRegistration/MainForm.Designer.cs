@@ -33,11 +33,11 @@
             this.addFriendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conversationList = new System.Windows.Forms.ListView();
-            this.messagesList = new System.Windows.Forms.ListView();
             this.messageTextBox = new System.Windows.Forms.TextBox();
             this.sendMessageButton = new System.Windows.Forms.Button();
             this.conversationPanel = new System.Windows.Forms.Panel();
             this.SelectImageButton = new System.Windows.Forms.Button();
+            this.messagesList = new System.Windows.Forms.ListBox();
             this.menuStrip.SuspendLayout();
             this.conversationPanel.SuspendLayout();
             this.SuspendLayout();
@@ -97,18 +97,6 @@
             this.conversationList.View = System.Windows.Forms.View.Tile;
             this.conversationList.SelectedIndexChanged += new System.EventHandler(this.conversationList_SelectedIndexChanged);
             // 
-            // messagesList
-            // 
-            this.messagesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.messagesList.Location = new System.Drawing.Point(0, 0);
-            this.messagesList.Margin = new System.Windows.Forms.Padding(2);
-            this.messagesList.Name = "messagesList";
-            this.messagesList.Size = new System.Drawing.Size(297, 301);
-            this.messagesList.TabIndex = 5;
-            this.messagesList.UseCompatibleStateImageBehavior = false;
-            // 
             // messageTextBox
             // 
             this.messageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -137,9 +125,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.conversationPanel.BackColor = System.Drawing.Color.Transparent;
+            this.conversationPanel.Controls.Add(this.messagesList);
             this.conversationPanel.Controls.Add(this.SelectImageButton);
             this.conversationPanel.Controls.Add(this.messageTextBox);
-            this.conversationPanel.Controls.Add(this.messagesList);
             this.conversationPanel.Controls.Add(this.sendMessageButton);
             this.conversationPanel.Location = new System.Drawing.Point(9, 36);
             this.conversationPanel.Margin = new System.Windows.Forms.Padding(2);
@@ -157,6 +145,18 @@
             this.SelectImageButton.TabIndex = 8;
             this.SelectImageButton.UseVisualStyleBackColor = true;
             this.SelectImageButton.Click += new System.EventHandler(this.SelectImageButton_Click);
+            // 
+            // messagesList
+            // 
+            this.messagesList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.messagesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messagesList.FormattingEnabled = true;
+            this.messagesList.ItemHeight = 24;
+            this.messagesList.Location = new System.Drawing.Point(0, 0);
+            this.messagesList.Name = "messagesList";
+            this.messagesList.Size = new System.Drawing.Size(297, 292);
+            this.messagesList.TabIndex = 9;
             // 
             // MainForm
             // 
@@ -192,11 +192,11 @@
         private System.Windows.Forms.ToolStripMenuItem addFriendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.ListView conversationList;
-        private System.Windows.Forms.ListView messagesList;
         private System.Windows.Forms.TextBox messageTextBox;
         private System.Windows.Forms.Button sendMessageButton;
         private System.Windows.Forms.Panel conversationPanel;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
         private System.Windows.Forms.Button SelectImageButton;
+        private System.Windows.Forms.ListBox messagesList;
     }
 }

@@ -146,7 +146,11 @@ namespace SQLRegistration
 
         private void sendMessageButton_Click(object sender, EventArgs e)
         {
+            Chat<string>.Send(messageTextBox.Text);
 
+            messageTextBox.Text = "";
+
+            UpdateChat();
         }
 
         private void homeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -156,20 +160,82 @@ namespace SQLRegistration
 
         }
 
+        public void UpdateChat()
+        {
+            //Creates SQL-query
+            String sql = @"SELECT * FROM `messages` WHERE `conversationID`='" + Conversation.activeConversationID.ToString() + @"'";
+            Connection.command = new MySqlCommand(sql, Connection.connection);
+
+            try
+            {
+                Connection.reader.Close();
+            }
+            catch { }
+
+            Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+
+            List<int> messageIDs = new List<int>();
+
+            while (Connection.reader.Read())
+            {
+                string message = Connection.reader[3].ToString();
+
+                messagesList.Items.Add(message);
+                messageIDs.Add(Int32.Parse(Connection.reader[2].ToString()));
+                
+            }
+
+            int index = 0;
+            List<string> finalStrings = new List<string>();
+
+            foreach (string item in messagesList.Items)
+            {
+                string s = "";
+
+                try
+                {
+                    s = Account.GetAccount(messageIDs[index]).firstname + ": " + item;
+                }catch{}
+
+                finalStrings.Add(s);
+                index++;
+            }
+
+            for (int i = 0; i < messagesList.Items.Count; i++)
+            {
+                messagesList.Items[i] = finalStrings[i];
+            }
+
+            index = 0;
+            finalStrings.Clear();
+            messageIDs.Clear();
+
+            Connection.reader.Close();
+
+            
+        }
+
         private void SelectImageButton_Click(object sender, EventArgs e)
         {
+            Image img = null;
+
             try
             {
                 OpenFileDialog open = new OpenFileDialog();
                 open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
                 if (open.ShowDialog() == DialogResult.OK)
                 {
-                    Process.Start(open.FileName);
+                    img = new Bitmap(open.FileName);
                 }
             }
             catch (Exception)
             {
                 throw new ApplicationException("Failed loading image");
+            }
+
+            if (img != null)
+            {
+                Chat<Image>.Send(img);
             }
         }
     }

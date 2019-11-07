@@ -10,6 +10,7 @@ namespace SQLRegistration
 {
     public class Account
     {
+        //
         //Account information variables
 
         public string username;
@@ -73,6 +74,20 @@ namespace SQLRegistration
             return null;
 
 
+        }
+
+        public static int GetAccountID(string username)
+        {
+            //Creates SQL-query, selectes user with specific ID
+            String sql = @"SELECT * FROM `users` WHERE `username`='" + username + @"'";
+            Connection.command = new MySqlCommand(sql, Connection.connection);
+            Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+            Connection.reader.Read();
+
+            int id = Int32.Parse(Connection.reader[0].ToString());
+            Connection.reader.Close();
+
+            return id;
         }
 
         public static bool IsValidUsername(string username)
