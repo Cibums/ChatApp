@@ -49,7 +49,6 @@ D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\bin\De
 D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\bin\Debug\MySql.Data.xml
 D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\bin\Debug\Renci.SshNet.xml
 D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\Debug\SQLRegistration.csprojAssemblyReference.cache
-D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\Debug\SQLRegistration.AddFriendForm.resources
 D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\Debug\SQLRegistration.Form1.resources
 D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\Debug\SQLRegistration.MainForm.resources
 D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\Debug\SQLRegistration.Properties.Resources.resources
@@ -59,3 +58,5 @@ D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\De
 D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\Debug\SQLRegistration.csproj.CopyComplete
 D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\Debug\SQLRegistration.exe
 D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\Debug\SQLRegistration.pdb
+D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\Debug\SQLRegistration.TextInputDialog.resources
+D:\Visual Studio Projects\ChatApp\ChatApp\SQLRegistration\SQLRegistration\obj\Debug\SQLRegistration.SelectFriendsDialog.resources

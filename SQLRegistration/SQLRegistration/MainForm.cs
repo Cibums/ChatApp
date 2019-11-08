@@ -15,20 +15,6 @@ namespace SQLRegistration
             InitializeComponent();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-            List<int> friends = Account.GetFriends(Connection.loggedInUserID);
-
-            if (friends != null)
-            {
-                foreach (int i in friends)
-                {
-                    MessageBox.Show(i.ToString());
-                }
-            }
-        }
-
         public void GenerateConversations()
         {
 
@@ -58,12 +44,19 @@ namespace SQLRegistration
         //When form is shown
         private void MainForm_Shown(object sender, EventArgs e)
         {
+
+            UpdateConversations();
+            
+        }
+
+        public void UpdateConversations()
+        {
+            conversationList.Items.Clear();
+
             foreach (Conversation conv in Conversation.GetConversations(Connection.loggedInUserID))
             {
                 conversationList.Items.Add(conv.conversationName);
             }
-
-            
         }
 
         private void addFriendButton_Click(object sender, EventArgs e)
@@ -71,41 +64,9 @@ namespace SQLRegistration
             
         }
 
-        private void conversationsList_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void addFriendToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Opens the dialog window
-            AddFriendForm aff = new AddFriendForm();
-            aff.ShowDialog();
-
-            //Checks if the user clicked OK
-            if (aff.DialogResult == DialogResult.OK)
-            {
-                MessageBox.Show(aff.usernameInput);
-
-                //Creates SQL-query
-                String sql = @"SELECT * FROM `users` WHERE `username`='" + aff.usernameInput + @"'";
-                Connection.command = new MySqlCommand(sql, Connection.connection);
-                Connection.reader = Connection.command.ExecuteReader(); //Executes the query
-                Connection.reader.Read();
-
-                if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users with that username)
-                {
-                    
-
-                    //Updates the friend list
-                    String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" + Connection.reader[6] + " " + Connection.reader[0].ToString() + "' WHERE `username`='" + Account.GetAccount(Connection.loggedInUserID).username + "';";
-                    Connection.reader.Close();
-                    Connection.command = new MySqlCommand(updateFriendSql, Connection.connection);
-                    Connection.reader = Connection.command.ExecuteReader(); //Executes the query
-                }
-
-                Connection.reader.Close();
-            }
+            
         }
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -142,6 +103,8 @@ namespace SQLRegistration
             conversationPanel.Visible = true;
 
             conversationList.SelectedItems.Clear();
+
+            UpdateChat();
         }
 
         private void sendMessageButton_Click(object sender, EventArgs e)
@@ -153,15 +116,23 @@ namespace SQLRegistration
             UpdateChat();
         }
 
-        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        public void GoHome()
         {
             conversationPanel.Visible = false;
             conversationList.Visible = true;
 
+            UpdateConversations();
+        }
+
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GoHome();
         }
 
         public void UpdateChat()
         {
+            messagesList.Items.Clear();
+
             //Creates SQL-query
             String sql = @"SELECT * FROM `messages` WHERE `conversationID`='" + Conversation.activeConversationID.ToString() + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
@@ -212,7 +183,9 @@ namespace SQLRegistration
 
             Connection.reader.Close();
 
-            
+            messagesList.SelectedIndex = messagesList.Items.Count - 1;
+            messagesList.SelectedIndex = -1;
+
         }
 
         private void SelectImageButton_Click(object sender, EventArgs e)
@@ -237,6 +210,79 @@ namespace SQLRegistration
             {
                 Chat<Image>.Send(img);
             }
+        }
+
+        private void messagesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            //Clears Selection if user tries to click
+            if (messagesList.SelectedItems.Count > 0)
+            {
+                messagesList.ClearSelected();
+            }
+        }
+
+        private void friendToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Opens the dialog window
+            TextInputDialog aff = new TextInputDialog();
+            aff.SetDialogSettings("USERNAME:", "Add Friend");
+            aff.ShowDialog();
+
+            //Checks if the user clicked OK
+            if (aff.DialogResult == DialogResult.OK)
+            {
+                MessageBox.Show(aff.input);
+
+                //Creates SQL-query
+                String sql = @"SELECT * FROM `users` WHERE `username`='" + aff.input + @"'";
+                Connection.command = new MySqlCommand(sql, Connection.connection);
+                Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+                Connection.reader.Read();
+
+                if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users with that username)
+                {
+
+
+                    //Updates the friend list
+                    String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" + Connection.reader[6] + " " + Connection.reader[0].ToString() + "' WHERE `username`='" + Account.GetAccount(Connection.loggedInUserID).username + "';";
+                    Connection.reader.Close();
+                    Connection.command = new MySqlCommand(updateFriendSql, Connection.connection);
+                    Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+                }
+
+                Connection.reader.Close();
+            }
+        }
+
+        private void conversationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.SetDialogSettings("CONVERSATION NAME:", "Add Conversation");
+            dialog.ShowDialog();
+
+            if (dialog.DialogResult == DialogResult.OK)
+            {
+                if (dialog.input == "")
+                {
+                    MessageBox.Show("You have to name the conversation soemthing", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                //Creates a conversation in the database
+                string sql = @"INSERT INTO conversations(name, userIDsString) VALUES ('"+dialog.input+"'," + Connection.loggedInUserID + ")";
+                Connection.command = new MySqlCommand(sql, Connection.connection);
+                Connection.reader = Connection.command.ExecuteReader(); //Execute query
+                Connection.reader.Close();
+
+                UpdateConversations();
+            }
+        }
+
+        private void AddFriendsButton_Click(object sender, EventArgs e)
+        {
+            SelectFriendsDialog sfd = new SelectFriendsDialog();
+            sfd.ShowDialog();
         }
     }
 }

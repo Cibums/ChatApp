@@ -65,11 +65,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
-    <Compile Include="AddFriendForm.cs">
+    <Compile Include="SelectFriendsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddFriendForm.Designer.cs">
-      <DependentUpon>AddFriendForm.cs</DependentUpon>
+    <Compile Include="SelectFriendsDialog.Designer.cs">
+      <DependentUpon>SelectFriendsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextInputDialog.Designer.cs">
+      <DependentUpon>TextInputDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Chat.cs" />
     <Compile Include="Connection.cs" />
@@ -95,8 +101,11 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddFriendForm.resx">
-      <DependentUpon>AddFriendForm.cs</DependentUpon>
+    <EmbeddedResource Include="SelectFriendsDialog.resx">
+      <DependentUpon>SelectFriendsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextInputDialog.resx">
+      <DependentUpon>TextInputDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

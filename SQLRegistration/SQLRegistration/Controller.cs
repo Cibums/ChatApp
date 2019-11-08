@@ -105,8 +105,10 @@ namespace SQLRegistration
                 return false;
             }
 
+            string usernameInputLower = usernameInput.ToLower(); 
+
             //Create SQL-query (gets the users with spcific username)
-            String sql = @"SELECT * FROM `users` WHERE `username`='" + usernameInput + @"'";
+            String sql = @"SELECT * FROM `users` WHERE `username`='" + usernameInputLower + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             Connection.reader = Connection.command.ExecuteReader(); //Executes the query
             Connection.reader.Read();
@@ -115,7 +117,7 @@ namespace SQLRegistration
             if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users created)
             {
                 //Checking if username and password match a user in the table
-                if (usernameInput == (Connection.reader[1].ToString()).ToLower() && passwordInput == Connection.reader[2].ToString())
+                if (usernameInputLower == (Connection.reader[1].ToString()).ToLower() && passwordInput == Connection.reader[2].ToString())
                 {
                     //Login Succeeded
 
@@ -166,6 +168,7 @@ namespace SQLRegistration
             loginForm.Hide();
 
             mainForm.UpdateUserInformation(Account.GetAccount(userID));
+            mainForm.GoHome();
         }
 
         
