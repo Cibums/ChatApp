@@ -257,6 +257,11 @@ namespace SQLRegistration
 
         private void conversationToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CreateConversartion();
+        }
+
+        void CreateConversartion()
+        {
             TextInputDialog dialog = new TextInputDialog();
             dialog.SetDialogSettings("CONVERSATION NAME:", "Add Conversation");
             dialog.ShowDialog();
@@ -270,7 +275,7 @@ namespace SQLRegistration
                 }
 
                 //Creates a conversation in the database
-                string sql = @"INSERT INTO conversations(name, userIDsString) VALUES ('"+dialog.input+"'," + Connection.loggedInUserID + ")";
+                string sql = @"INSERT INTO conversations(name, userIDsString) VALUES ('" + dialog.input + "'," + Connection.loggedInUserID + ")";
                 Connection.command = new MySqlCommand(sql, Connection.connection);
                 Connection.reader = Connection.command.ExecuteReader(); //Execute query
                 Connection.reader.Close();

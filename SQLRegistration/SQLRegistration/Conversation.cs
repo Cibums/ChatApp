@@ -74,5 +74,32 @@ namespace SQLRegistration
 
             return id;
         }
+
+        public static void AddUser(int useriD, int conversationID)
+        {
+            //Adds user to conversation
+
+            //
+            String sql = @"SELECT * FROM `conversations` WHERE `ID`='" + activeConversationID + @"';";
+            Connection.command = new MySqlCommand(sql, Connection.connection);
+            Connection.reader = Connection.command.ExecuteReader(); //Execute query
+            Connection.reader.Read();
+
+            string usersString = "";
+
+            if (Connection.reader.HasRows)
+            {
+                usersString = Connection.reader[2].ToString();
+            }
+
+            Connection.reader.Close();
+
+            usersString += " "+useriD.ToString();
+
+            sql = @"UPDATE `conversations` SET `userIDsString`='" + usersString +"' WHERE `ID`= " + activeConversationID + ";";
+            Connection.command = new MySqlCommand(sql, Connection.connection);
+            Connection.reader = Connection.command.ExecuteReader(); //Execute query
+            Connection.reader.Close();
+        }
     }
 }

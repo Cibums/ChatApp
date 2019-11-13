@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dialogLabel = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.friendListBox = new System.Windows.Forms.CheckedListBox();
             this.addFriendsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -44,20 +44,20 @@
             this.dialogLabel.TabIndex = 3;
             this.dialogLabel.Text = "SELECT ONE OR MORE FRIENDS";
             // 
-            // checkedListBox1
+            // friendListBox
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.friendListBox.FormattingEnabled = true;
+            this.friendListBox.Items.AddRange(new object[] {
             "gryhfyjhryh",
             "rhjryjryjh",
             "ryjryjj",
             "jyjjhrtt",
             "tjtyjyjyjyjy",
             "yjyjyjyjdfef"});
-            this.checkedListBox1.Location = new System.Drawing.Point(15, 33);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(315, 214);
-            this.checkedListBox1.TabIndex = 4;
+            this.friendListBox.Location = new System.Drawing.Point(15, 33);
+            this.friendListBox.Name = "friendListBox";
+            this.friendListBox.Size = new System.Drawing.Size(315, 214);
+            this.friendListBox.TabIndex = 4;
             // 
             // addFriendsButton
             // 
@@ -75,7 +75,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(342, 288);
             this.Controls.Add(this.addFriendsButton);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.friendListBox);
             this.Controls.Add(this.dialogLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SelectFriendsDialog";
@@ -89,7 +89,7 @@
         #endregion
 
         private System.Windows.Forms.Label dialogLabel;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox friendListBox;
         private System.Windows.Forms.Button addFriendsButton;
     }
 }
