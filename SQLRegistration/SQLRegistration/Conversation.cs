@@ -101,5 +101,49 @@ namespace SQLRegistration
             Connection.reader = Connection.command.ExecuteReader(); //Execute query
             Connection.reader.Close();
         }
+
+        public static List<int> GetConversationUsers(int conversationID)
+        {
+            //Creates SQL-query, selectes logged in user's id
+            String sql = @"SELECT * FROM `conversations` WHERE `ID`='" + conversationID + @"'";
+            Connection.command = new MySqlCommand(sql, Connection.connection);
+
+            try
+            {
+                Connection.reader.Close();
+            }
+            catch { }
+
+            Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+            Connection.reader.Read();
+
+            //Checks if the user has no friends
+            if (Connection.reader[2].ToString() == "")
+            {
+                Connection.reader.Close();
+                return null;
+            }
+
+            //Splits the user's friends' ids into int list
+            string[] operands = Regex.Split(Connection.reader[2].ToString(), @"\s+");
+
+            List<int> returnValue = new List<int>();
+
+            foreach (string operand in operands)
+            {
+                string index = operand.Replace(" ", "");
+                try
+                {
+                    returnValue.Add(Int32.Parse(index));
+                }
+                catch { }
+
+            }
+
+
+            Connection.reader.Close();
+
+            return returnValue;
+        }
     }
 }

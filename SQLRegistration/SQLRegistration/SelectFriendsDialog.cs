@@ -21,12 +21,36 @@ namespace SQLRegistration
 
         private void addFriendsButton_Click(object sender, EventArgs e)
         {
-            foreach (string friend in friendListBox.SelectedItems)
+            string friendsAdded = "";
+            bool first = true;
+
+            List<int> conversationUsersIDs = Conversation.GetConversationUsers(Conversation.activeConversationID);
+
+            foreach (string friend in friendListBox.CheckedItems)
             {
                 int id = Account.GetAccountID(friend);
 
+                if (conversationUsersIDs.Contains(id))
+                {
+                    Close();
+                    return;
+                }
+
                 Conversation.AddUser(id, Conversation.activeConversationID);
+
+                if (!first)
+                {
+                    friendsAdded += ", ";
+                }
+
+                friendsAdded += Account.GetAccount(id).firstname;
+
+                first = false;
             }
+
+            MessageBox.Show("Added " + friendsAdded + " to this conversation", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            Close();
         }
 
         private void SelectFriendsDialog_Load(object sender, EventArgs e)

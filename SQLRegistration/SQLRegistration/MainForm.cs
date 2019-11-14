@@ -15,11 +15,6 @@ namespace SQLRegistration
             InitializeComponent();
         }
 
-        public void GenerateConversations()
-        {
-
-        }
-
         public void UpdateUserInformation(Account account)
         {
             //If there's already a user specific button: delete it before creating new
@@ -109,7 +104,7 @@ namespace SQLRegistration
 
         private void sendMessageButton_Click(object sender, EventArgs e)
         {
-            Chat<string>.Send(messageTextBox.Text);
+            Chat.Send(messageTextBox.Text);
 
             messageTextBox.Text = "";
 
@@ -188,33 +183,8 @@ namespace SQLRegistration
 
         }
 
-        private void SelectImageButton_Click(object sender, EventArgs e)
-        {
-            Image img = null;
-
-            try
-            {
-                OpenFileDialog open = new OpenFileDialog();
-                open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
-                if (open.ShowDialog() == DialogResult.OK)
-                {
-                    img = new Bitmap(open.FileName);
-                }
-            }
-            catch (Exception)
-            {
-                throw new ApplicationException("Failed loading image");
-            }
-
-            if (img != null)
-            {
-                Chat<Image>.Send(img);
-            }
-        }
-
         private void messagesList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             //Clears Selection if user tries to click
             if (messagesList.SelectedItems.Count > 0)
             {
@@ -232,23 +202,42 @@ namespace SQLRegistration
             //Checks if the user clicked OK
             if (aff.DialogResult == DialogResult.OK)
             {
-                MessageBox.Show(aff.input);
+                String sql = @"SELECT * FROM `users` WHERE `ID`='" + Connection.loggedInUserID + @"';";
+                Connection.command = new MySqlCommand(sql, Connection.connection);
+                Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+                Connection.reader.Read();
 
-                //Creates SQL-query
-                String sql = @"SELECT * FROM `users` WHERE `username`='" + aff.input + @"'";
+                string frienduserIDsString = "";
+
+                if (!Connection.reader.HasRows)
+                {
+                    MessageBox.Show("Can't find logged in user");
+                    Connection.reader.Close();
+                    return;
+                }
+                else
+                {
+                    frienduserIDsString = Connection.reader[6].ToString();
+                }
+
+                Connection.reader.Close();
+
+                sql = @"SELECT * FROM `users` WHERE `username`='" + aff.input + @"'";
                 Connection.command = new MySqlCommand(sql, Connection.connection);
                 Connection.reader = Connection.command.ExecuteReader(); //Executes the query
                 Connection.reader.Read();
 
                 if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users with that username)
                 {
-
-
                     //Updates the friend list
-                    String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" + Connection.reader[6] + " " + Connection.reader[0].ToString() + "' WHERE `username`='" + Account.GetAccount(Connection.loggedInUserID).username + "';";
+                    String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" + frienduserIDsString + " " + Connection.reader[0] + "' WHERE `ID`='" + Connection.loggedInUserID + "';";
                     Connection.reader.Close();
                     Connection.command = new MySqlCommand(updateFriendSql, Connection.connection);
                     Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+                }
+                else
+                {
+                    MessageBox.Show("Can't find the user " + aff.input, "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
                 Connection.reader.Close();

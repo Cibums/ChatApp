@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.homeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addFriendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.friendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.conversationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conversationList = new System.Windows.Forms.ListView();
             this.messageTextBox = new System.Windows.Forms.TextBox();
             this.sendMessageButton = new System.Windows.Forms.Button();
             this.conversationPanel = new System.Windows.Forms.Panel();
-            this.messagesList = new System.Windows.Forms.ListBox();
-            this.SelectImageButton = new System.Windows.Forms.Button();
-            this.friendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.conversationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddFriendsButton = new System.Windows.Forms.Button();
+            this.messagesList = new System.Windows.Forms.ListBox();
             this.menuStrip.SuspendLayout();
             this.conversationPanel.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +77,20 @@
             this.addFriendToolStripMenuItem.Text = "Add...";
             this.addFriendToolStripMenuItem.Click += new System.EventHandler(this.addFriendToolStripMenuItem_Click);
             // 
+            // friendToolStripMenuItem
+            // 
+            this.friendToolStripMenuItem.Name = "friendToolStripMenuItem";
+            this.friendToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.friendToolStripMenuItem.Text = "Friend";
+            this.friendToolStripMenuItem.Click += new System.EventHandler(this.friendToolStripMenuItem_Click);
+            // 
+            // conversationToolStripMenuItem
+            // 
+            this.conversationToolStripMenuItem.Name = "conversationToolStripMenuItem";
+            this.conversationToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.conversationToolStripMenuItem.Text = "Conversation";
+            this.conversationToolStripMenuItem.Click += new System.EventHandler(this.conversationToolStripMenuItem_Click);
+            // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
@@ -107,10 +121,10 @@
             // 
             this.messageTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.messageTextBox.Location = new System.Drawing.Point(49, 305);
+            this.messageTextBox.Location = new System.Drawing.Point(24, 305);
             this.messageTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(168, 20);
+            this.messageTextBox.Size = new System.Drawing.Size(193, 20);
             this.messageTextBox.TabIndex = 6;
             // 
             // sendMessageButton
@@ -134,7 +148,6 @@
             this.conversationPanel.BackColor = System.Drawing.Color.Transparent;
             this.conversationPanel.Controls.Add(this.AddFriendsButton);
             this.conversationPanel.Controls.Add(this.messagesList);
-            this.conversationPanel.Controls.Add(this.SelectImageButton);
             this.conversationPanel.Controls.Add(this.messageTextBox);
             this.conversationPanel.Controls.Add(this.sendMessageButton);
             this.conversationPanel.Location = new System.Drawing.Point(9, 36);
@@ -143,6 +156,16 @@
             this.conversationPanel.Size = new System.Drawing.Size(300, 323);
             this.conversationPanel.TabIndex = 8;
             this.conversationPanel.Visible = false;
+            // 
+            // AddFriendsButton
+            // 
+            this.AddFriendsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AddFriendsButton.Location = new System.Drawing.Point(0, 304);
+            this.AddFriendsButton.Name = "AddFriendsButton";
+            this.AddFriendsButton.Size = new System.Drawing.Size(19, 19);
+            this.AddFriendsButton.TabIndex = 10;
+            this.AddFriendsButton.UseVisualStyleBackColor = true;
+            this.AddFriendsButton.Click += new System.EventHandler(this.AddFriendsButton_Click);
             // 
             // messagesList
             // 
@@ -157,40 +180,6 @@
             this.messagesList.TabIndex = 9;
             this.messagesList.SelectedIndexChanged += new System.EventHandler(this.messagesList_SelectedIndexChanged);
             // 
-            // SelectImageButton
-            // 
-            this.SelectImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SelectImageButton.Location = new System.Drawing.Point(25, 304);
-            this.SelectImageButton.Name = "SelectImageButton";
-            this.SelectImageButton.Size = new System.Drawing.Size(19, 19);
-            this.SelectImageButton.TabIndex = 8;
-            this.SelectImageButton.UseVisualStyleBackColor = true;
-            this.SelectImageButton.Click += new System.EventHandler(this.SelectImageButton_Click);
-            // 
-            // friendToolStripMenuItem
-            // 
-            this.friendToolStripMenuItem.Name = "friendToolStripMenuItem";
-            this.friendToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.friendToolStripMenuItem.Text = "Friend";
-            this.friendToolStripMenuItem.Click += new System.EventHandler(this.friendToolStripMenuItem_Click);
-            // 
-            // conversationToolStripMenuItem
-            // 
-            this.conversationToolStripMenuItem.Name = "conversationToolStripMenuItem";
-            this.conversationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.conversationToolStripMenuItem.Text = "Conversation";
-            this.conversationToolStripMenuItem.Click += new System.EventHandler(this.conversationToolStripMenuItem_Click);
-            // 
-            // AddFriendsButton
-            // 
-            this.AddFriendsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddFriendsButton.Location = new System.Drawing.Point(0, 304);
-            this.AddFriendsButton.Name = "AddFriendsButton";
-            this.AddFriendsButton.Size = new System.Drawing.Size(19, 19);
-            this.AddFriendsButton.TabIndex = 10;
-            this.AddFriendsButton.UseVisualStyleBackColor = true;
-            this.AddFriendsButton.Click += new System.EventHandler(this.AddFriendsButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,6 +192,7 @@
             this.Controls.Add(this.conversationList);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
@@ -229,7 +219,6 @@
         private System.Windows.Forms.Button sendMessageButton;
         private System.Windows.Forms.Panel conversationPanel;
         private System.Windows.Forms.ToolStripMenuItem homeToolStripMenuItem;
-        private System.Windows.Forms.Button SelectImageButton;
         private System.Windows.Forms.ListBox messagesList;
         private System.Windows.Forms.ToolStripMenuItem friendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem conversationToolStripMenuItem;
