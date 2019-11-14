@@ -14,7 +14,7 @@ namespace SQLRegistration
     {
         public static void Send(string message)
         {
-            //Create a SQL-query that inserts user information
+            //Puts a message into the database
             String sql = @"INSERT INTO messages(conversationID, userID, messagetext) VALUES ('" + Conversation.activeConversationID + "','" + Connection.loggedInUserID + "','" + message + "');";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             Connection.reader = Connection.command.ExecuteReader(); //Execute query

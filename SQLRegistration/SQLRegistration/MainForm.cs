@@ -32,7 +32,7 @@ namespace SQLRegistration
         //When form is closing
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Quites the whole application (including other hidden forms)
+            //Quits the whole application (including other hidden forms)
             Application.Exit();
         }
 
@@ -46,33 +46,27 @@ namespace SQLRegistration
 
         public void UpdateConversations()
         {
+            //Removes currently showing conversation in the list of conversations
             conversationList.Items.Clear();
 
+            //For each conversation that the logged in user has access to
             foreach (Conversation conv in Conversation.GetConversations(Connection.loggedInUserID))
             {
+                //Add conversation to the list of conversations
                 conversationList.Items.Add(conv.conversationName);
             }
         }
 
-        private void addFriendButton_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void addFriendToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Console.Write(Connection.loggedInUserID);
-
+            //If the saved account data exists: delete it
             if (File.Exists(Application.LocalUserAppDataPath + @"\a.ca"))
             {
                 File.Delete(Application.LocalUserAppDataPath + @"\a.ca");
             }
  
+
+            //Log out the user
             Connection.loggedInUserID = -1;
 
             Controller.loginForm.Show();
@@ -104,15 +98,18 @@ namespace SQLRegistration
 
         private void sendMessageButton_Click(object sender, EventArgs e)
         {
+            //Sends message
             Chat.Send(messageTextBox.Text);
 
             messageTextBox.Text = "";
 
+            //Updates the chat
             UpdateChat();
         }
 
         public void GoHome()
         {
+            //Goes to conversation list
             conversationPanel.Visible = false;
             conversationList.Visible = true;
 
@@ -126,9 +123,10 @@ namespace SQLRegistration
 
         public void UpdateChat()
         {
+            //Removes all messages currently shown
             messagesList.Items.Clear();
 
-            //Creates SQL-query
+            //Gets all messages in active conversation
             String sql = @"SELECT * FROM `messages` WHERE `conversationID`='" + Conversation.activeConversationID.ToString() + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
 
@@ -146,10 +144,14 @@ namespace SQLRegistration
             {
                 string message = Connection.reader[3].ToString();
 
-                messagesList.Items.Add(message);
-                messageIDs.Add(Int32.Parse(Connection.reader[2].ToString()));
+                messagesList.Items.Add(message); //Adds message to list of messages
+                messageIDs.Add(Int32.Parse(Connection.reader[2].ToString())); //Adds the ID of the message to a list
                 
             }
+
+
+
+            //Show all messages
 
             int index = 0;
             List<string> finalStrings = new List<string>();
@@ -178,6 +180,7 @@ namespace SQLRegistration
 
             Connection.reader.Close();
 
+            //Deselects selected alterantives in check box list
             messagesList.SelectedIndex = messagesList.Items.Count - 1;
             messagesList.SelectedIndex = -1;
 
@@ -202,6 +205,7 @@ namespace SQLRegistration
             //Checks if the user clicked OK
             if (aff.DialogResult == DialogResult.OK)
             {
+                //Gets all data from the user with the specific ID
                 String sql = @"SELECT * FROM `users` WHERE `ID`='" + Connection.loggedInUserID + @"';";
                 Connection.command = new MySqlCommand(sql, Connection.connection);
                 Connection.reader = Connection.command.ExecuteReader(); //Executes the query
@@ -209,6 +213,7 @@ namespace SQLRegistration
 
                 string frienduserIDsString = "";
 
+                //Stop if user can't be found
                 if (!Connection.reader.HasRows)
                 {
                     MessageBox.Show("Can't find logged in user");
@@ -217,11 +222,13 @@ namespace SQLRegistration
                 }
                 else
                 {
+                    //Gets the user's current friends
                     frienduserIDsString = Connection.reader[6].ToString();
                 }
 
                 Connection.reader.Close();
 
+                //Selects the user that has the same username as the input
                 sql = @"SELECT * FROM `users` WHERE `username`='" + aff.input + @"'";
                 Connection.command = new MySqlCommand(sql, Connection.connection);
                 Connection.reader = Connection.command.ExecuteReader(); //Executes the query
@@ -237,6 +244,7 @@ namespace SQLRegistration
                 }
                 else
                 {
+                    //There's no user with the same username as the input
                     MessageBox.Show("Can't find the user " + aff.input, "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
@@ -251,14 +259,17 @@ namespace SQLRegistration
 
         void CreateConversartion()
         {
+            //Opens dialog form window
             TextInputDialog dialog = new TextInputDialog();
             dialog.SetDialogSettings("CONVERSATION NAME:", "Add Conversation");
             dialog.ShowDialog();
 
+            //Checks if clicked OK
             if (dialog.DialogResult == DialogResult.OK)
             {
                 if (dialog.input == "")
                 {
+                    //The user didn't write anything as an input
                     MessageBox.Show("You have to name the conversation soemthing", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -269,12 +280,14 @@ namespace SQLRegistration
                 Connection.reader = Connection.command.ExecuteReader(); //Execute query
                 Connection.reader.Close();
 
+                //Updates the conversation list
                 UpdateConversations();
             }
         }
 
         private void AddFriendsButton_Click(object sender, EventArgs e)
         {
+            //Opens the select friend dialog
             SelectFriendsDialog sfd = new SelectFriendsDialog();
             sfd.ShowDialog();
         }

@@ -77,12 +77,14 @@ namespace SQLRegistration
 
         public static int GetAccountID(string username)
         {
-            //Creates SQL-query, selectes user with specific ID
+            //Creates SQL-query, selectes user with specific username
             String sql = @"SELECT * FROM `users` WHERE `username`='" + username + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             Connection.reader = Connection.command.ExecuteReader(); //Executes the query
             Connection.reader.Read();
 
+
+            //Get and return id of user
             int id = Int32.Parse(Connection.reader[0].ToString());
             Connection.reader.Close();
 
@@ -91,12 +93,18 @@ namespace SQLRegistration
 
         public static bool IsValidUsername(string username)
         {
+            //Checks if the username follows some specific rule
+
+
+            //Checks if the username doesn't contain any special characters
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
 
             if (!regexItem.IsMatch(username))
             {
                 return false;
             }
+
+            //Checks if the username is too long
             Func<string, int, bool> isTooLong = (text, length) => text.Length > length;
 
             return !isTooLong(username, 8);
@@ -104,12 +112,18 @@ namespace SQLRegistration
 
         public static bool IsValidPassword(string password)
         {
+            //Checks if the password follows some specific rule
+
+
+            //Checks if the password doesn't contain any special characters
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
 
             if (!regexItem.IsMatch(password))
             {
                 return false;
             }
+
+            //Checks if passowrd has at least one digit and one letter
 
             bool isLetter = false;
             bool isDigit = false;
@@ -194,6 +208,8 @@ namespace SQLRegistration
 
             //Splits the user's friends' ids into int list
             string[] operands = Regex.Split(Connection.reader[0].ToString(), @"\s+");
+
+            //Returns list of friends' ids
 
             List<int> returnValue = new List<int>();
 

@@ -12,7 +12,7 @@ namespace SQLRegistration
 {
     public partial class TextInputDialog : Form
     {
-        public string input = "";
+        public string input = ""; //input is reachable from other classes
 
         public TextInputDialog()
         {
@@ -21,6 +21,7 @@ namespace SQLRegistration
 
         public void SetDialogSettings(string Question, string ButtonText)
         {
+            //Sets the dialog settings
             dialogLabel.Text = Question;
             DialogOKButton.Text = ButtonText;
         }

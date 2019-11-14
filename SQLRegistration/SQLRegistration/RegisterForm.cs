@@ -12,7 +12,7 @@ namespace SQLRegistration
 {
     public partial class RegisterForm : Form
     {
-
+        //Allows form to be dragged
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -38,6 +38,8 @@ namespace SQLRegistration
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            //Drag and drop
+            
             if (e.Button == MouseButtons.Left)
             {
                 ReleaseCapture();

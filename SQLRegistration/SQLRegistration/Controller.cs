@@ -20,14 +20,16 @@ namespace SQLRegistration
         {
             //Registers user 
 
-            //
+            //Tries to select data from user with the same username or email
             String sql = @"SELECT * FROM `users` WHERE `username`='"+ usernameInput + @"' OR `email`='"+ emailInput + @"';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             Connection.reader = Connection.command.ExecuteReader(); //Execute query
             Connection.reader.Read();
 
+            //If user already exists in database
             if (Connection.reader.HasRows)
             {
+                //If user with the same username already exists: tell the user and return
                 if (Connection.reader[1].ToString() == usernameInput)
                 {
                     MessageBox.Show("USERNAME IS ALREADY TAKEN");
@@ -35,6 +37,7 @@ namespace SQLRegistration
                     return false;
                 }
 
+                //If user with the same email already exists: tell the user adn return
                 if (Connection.reader[3].ToString() == emailInput)
                 {
                     MessageBox.Show("EMAIL IS ALREADY USED ONCE");
@@ -44,6 +47,8 @@ namespace SQLRegistration
             }            
 
             Connection.reader.Close();
+
+            //Checks if all inputs are valid
 
             if (!Account.IsValidUsername(usernameInput))
             {
@@ -63,12 +68,13 @@ namespace SQLRegistration
                 return false;
             }
 
-            //Create a SQL-query that inserts user information
+            //Inserts user into database
             sql = @"INSERT INTO users(username, password, email, firstname, lastname, frienduserIDsString) VALUES ('" + (usernameInput).ToLower() + "','" + HashPassword(passwordInput) + "','" + emailInput + "','" + firstNameInput + "','" + lastNameInput + "','" + "" + "')";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             Connection.reader = Connection.command.ExecuteReader(); //Execute query
             Connection.reader.Close();
 
+            //Tries to log in to the newly created account
             Login(usernameInput, HashPassword(passwordInput));
 
             return true;
@@ -76,6 +82,8 @@ namespace SQLRegistration
 
         public static string HashPassword(string password)
         {
+
+            //Returns an encrypted version of the password input
             HashAlgorithm algorithm = SHA256.Create();
             byte[] hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(password));
 
@@ -88,11 +96,13 @@ namespace SQLRegistration
 
         public static bool IsLetter(char c)
         {
+            //If character is a letter: return true
             return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
         }
 
         public static bool IsDigit(char c)
         {
+            //If character is digit: return true
             return c >= '0' && c <= '9';
         }
 
@@ -114,7 +124,7 @@ namespace SQLRegistration
             Connection.reader.Read();
             
 
-            if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users created)
+            if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users found)
             {
                 //Checking if username and password match a user in the table
                 if (usernameInputLower == (Connection.reader[1].ToString()).ToLower() && passwordInput == Connection.reader[2].ToString())
