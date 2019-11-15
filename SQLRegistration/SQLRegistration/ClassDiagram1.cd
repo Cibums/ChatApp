@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="SQLRegistration.Connection">
-    <Position X="1.25" Y="0.5" Width="1.75" />
+    <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAAAAAAABAAgAAAQAAAAgAAAAAAAQAAA=</HashCode>
       <FileName>Connection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SQLRegistration.Controller">
-    <Position X="2" Y="3.5" Width="1.25" />
+    <Position X="0.5" Y="3.5" Width="1.25" />
     <TypeIdentifier>
       <HashCode>AAAIIBAAAAAEAAAAAgAAAAAAAAABAAgAAAAQAEAAAAA=</HashCode>
       <FileName>Controller.cs</FileName>
@@ -35,11 +35,11 @@
       <FileName>Chat.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SQLRegistration.Form1">
-    <Position X="3.25" Y="0.5" Width="1.5" />
+  <Class Name="SQLRegistration.LoginForm">
+    <Position X="2.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AABAAAEAAygAAhAAACSABAACgAAgAAAAAAQAgABQABA=</HashCode>
-      <FileName>Form1.cs</FileName>
+      <HashCode>AABAAAEAAygAAgAAACGAjAACgAAgAAAAAAQQgAAQABA=</HashCode>
+      <FileName>LoginForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SQLRegistration.MainForm">
@@ -59,7 +59,7 @@
   <Class Name="SQLRegistration.RegisterForm">
     <Position X="12.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAEoAiAAABAAAiCACAADAAAgAABAAAAAIABQAAA=</HashCode>
+      <HashCode>AABAAAEoAiAQAAAAAiGAiAADAAAgAABAAAAQIAAYAAE=</HashCode>
       <FileName>RegisterForm.cs</FileName>
     </TypeIdentifier>
   </Class>

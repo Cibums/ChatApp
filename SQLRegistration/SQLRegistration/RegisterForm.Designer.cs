@@ -31,19 +31,19 @@
             this.registerPanel = new System.Windows.Forms.Panel();
             this.loginLinkLabel = new System.Windows.Forms.LinkLabel();
             this.RegistrationLastNameTextBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lastNameTitleLabel = new System.Windows.Forms.Label();
             this.RegistrationFirstNameTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.firstNameTitleLabel = new System.Windows.Forms.Label();
             this.RegistrationEmailTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.emailTitleLabel = new System.Windows.Forms.Label();
             this.registerButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.passwordTitleLabel = new System.Windows.Forms.Label();
             this.registrationPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.usernameTitleLabel = new System.Windows.Forms.Label();
             this.registrationUsernameTextBox = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.headerImage = new System.Windows.Forms.PictureBox();
             this.registerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.headerImage)).BeginInit();
             this.SuspendLayout();
             // 
             // registerPanel
@@ -52,15 +52,15 @@
             this.registerPanel.BackColor = System.Drawing.Color.Transparent;
             this.registerPanel.Controls.Add(this.loginLinkLabel);
             this.registerPanel.Controls.Add(this.RegistrationLastNameTextBox);
-            this.registerPanel.Controls.Add(this.label7);
+            this.registerPanel.Controls.Add(this.lastNameTitleLabel);
             this.registerPanel.Controls.Add(this.RegistrationFirstNameTextBox);
-            this.registerPanel.Controls.Add(this.label6);
+            this.registerPanel.Controls.Add(this.firstNameTitleLabel);
             this.registerPanel.Controls.Add(this.RegistrationEmailTextBox);
-            this.registerPanel.Controls.Add(this.label5);
+            this.registerPanel.Controls.Add(this.emailTitleLabel);
             this.registerPanel.Controls.Add(this.registerButton);
-            this.registerPanel.Controls.Add(this.label3);
+            this.registerPanel.Controls.Add(this.passwordTitleLabel);
             this.registerPanel.Controls.Add(this.registrationPasswordTextBox);
-            this.registerPanel.Controls.Add(this.label4);
+            this.registerPanel.Controls.Add(this.usernameTitleLabel);
             this.registerPanel.Controls.Add(this.registrationUsernameTextBox);
             this.registerPanel.Location = new System.Drawing.Point(24, 171);
             this.registerPanel.Margin = new System.Windows.Forms.Padding(2);
@@ -90,16 +90,16 @@
             this.RegistrationLastNameTextBox.Size = new System.Drawing.Size(109, 20);
             this.RegistrationLastNameTextBox.TabIndex = 4;
             // 
-            // label7
+            // lastNameTitleLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(119, 158);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 20);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "LAST NAME:";
+            this.lastNameTitleLabel.AutoSize = true;
+            this.lastNameTitleLabel.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastNameTitleLabel.Location = new System.Drawing.Point(119, 158);
+            this.lastNameTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lastNameTitleLabel.Name = "lastNameTitleLabel";
+            this.lastNameTitleLabel.Size = new System.Drawing.Size(100, 20);
+            this.lastNameTitleLabel.TabIndex = 9;
+            this.lastNameTitleLabel.Text = "LAST NAME:";
             // 
             // RegistrationFirstNameTextBox
             // 
@@ -111,16 +111,16 @@
             this.RegistrationFirstNameTextBox.Size = new System.Drawing.Size(109, 20);
             this.RegistrationFirstNameTextBox.TabIndex = 3;
             // 
-            // label6
+            // firstNameTitleLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(-4, 158);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 20);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "FIRST NAME:";
+            this.firstNameTitleLabel.AutoSize = true;
+            this.firstNameTitleLabel.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.firstNameTitleLabel.Location = new System.Drawing.Point(-4, 158);
+            this.firstNameTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.firstNameTitleLabel.Name = "firstNameTitleLabel";
+            this.firstNameTitleLabel.Size = new System.Drawing.Size(103, 20);
+            this.firstNameTitleLabel.TabIndex = 7;
+            this.firstNameTitleLabel.Text = "FIRST NAME:";
             // 
             // RegistrationEmailTextBox
             // 
@@ -132,16 +132,16 @@
             this.RegistrationEmailTextBox.Size = new System.Drawing.Size(230, 20);
             this.RegistrationEmailTextBox.TabIndex = 2;
             // 
-            // label5
+            // emailTitleLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(-4, 106);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 20);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "EMAIL:";
+            this.emailTitleLabel.AutoSize = true;
+            this.emailTitleLabel.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailTitleLabel.Location = new System.Drawing.Point(-4, 106);
+            this.emailTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.emailTitleLabel.Name = "emailTitleLabel";
+            this.emailTitleLabel.Size = new System.Drawing.Size(59, 20);
+            this.emailTitleLabel.TabIndex = 5;
+            this.emailTitleLabel.Text = "EMAIL:";
             // 
             // registerButton
             // 
@@ -159,16 +159,16 @@
             this.registerButton.UseVisualStyleBackColor = true;
             this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
             // 
-            // label3
+            // passwordTitleLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(-4, 53);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 20);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "PASSWORD:";
+            this.passwordTitleLabel.AutoSize = true;
+            this.passwordTitleLabel.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordTitleLabel.Location = new System.Drawing.Point(-4, 53);
+            this.passwordTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.passwordTitleLabel.Name = "passwordTitleLabel";
+            this.passwordTitleLabel.Size = new System.Drawing.Size(99, 20);
+            this.passwordTitleLabel.TabIndex = 3;
+            this.passwordTitleLabel.Text = "PASSWORD:";
             // 
             // registrationPasswordTextBox
             // 
@@ -181,16 +181,16 @@
             this.registrationPasswordTextBox.Size = new System.Drawing.Size(230, 20);
             this.registrationPasswordTextBox.TabIndex = 1;
             // 
-            // label4
+            // usernameTitleLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(-4, 0);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 20);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "USERNAME:";
+            this.usernameTitleLabel.AutoSize = true;
+            this.usernameTitleLabel.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameTitleLabel.Location = new System.Drawing.Point(-4, 0);
+            this.usernameTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.usernameTitleLabel.Name = "usernameTitleLabel";
+            this.usernameTitleLabel.Size = new System.Drawing.Size(97, 20);
+            this.usernameTitleLabel.TabIndex = 1;
+            this.usernameTitleLabel.Text = "USERNAME:";
             // 
             // registrationUsernameTextBox
             // 
@@ -202,19 +202,19 @@
             this.registrationUsernameTextBox.Size = new System.Drawing.Size(230, 20);
             this.registrationUsernameTextBox.TabIndex = 0;
             // 
-            // pictureBox1
+            // headerImage
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.headerImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::SQLRegistration.Properties.Resources.chatapplogopng;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(279, 144);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.headerImage.Image = global::SQLRegistration.Properties.Resources.chatapplogopng;
+            this.headerImage.Location = new System.Drawing.Point(0, 0);
+            this.headerImage.Margin = new System.Windows.Forms.Padding(2);
+            this.headerImage.Name = "headerImage";
+            this.headerImage.Size = new System.Drawing.Size(279, 144);
+            this.headerImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.headerImage.TabIndex = 7;
+            this.headerImage.TabStop = false;
+            this.headerImage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             // 
             // RegisterForm
             // 
@@ -222,7 +222,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(279, 517);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.headerImage);
             this.Controls.Add(this.registerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -231,7 +231,7 @@
             this.Text = "Register | Chat App";
             this.registerPanel.ResumeLayout(false);
             this.registerPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.headerImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -240,17 +240,17 @@
 
         private System.Windows.Forms.Panel registerPanel;
         private System.Windows.Forms.TextBox RegistrationLastNameTextBox;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lastNameTitleLabel;
         private System.Windows.Forms.TextBox RegistrationFirstNameTextBox;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label firstNameTitleLabel;
         private System.Windows.Forms.TextBox RegistrationEmailTextBox;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label emailTitleLabel;
         private System.Windows.Forms.Button registerButton;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label passwordTitleLabel;
         private System.Windows.Forms.TextBox registrationPasswordTextBox;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label usernameTitleLabel;
         private System.Windows.Forms.TextBox registrationUsernameTextBox;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox headerImage;
         private System.Windows.Forms.LinkLabel loginLinkLabel;
     }
 }
