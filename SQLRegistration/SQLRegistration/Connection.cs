@@ -1,5 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.IO;
+using System.Windows.Forms;
 
 namespace SQLRegistration
 {
@@ -14,8 +16,35 @@ namespace SQLRegistration
         public static string GetConnectionString
         {
             get{
-                //Server Information
-                String con = @"server=localhost; user id=root;password=; database=chatapp";
+
+                //Reads config.txt
+
+                string dbusername = "";
+                string dbpassword = "";
+
+                foreach (string line in File.ReadAllLines(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.Parent.FullName + @"\config.txt"))
+                {
+                    if (line.Contains("username: "))
+                    {
+                        string username = line;
+                        username = username.Replace("username: ", "");
+                        username = username.Replace("\"", "");
+
+                        dbusername = username;
+                    }
+
+                    if (line.Contains("password: "))
+                    {
+                        string password = line;
+                        password = password.Replace("password: ", "");
+                        password = password.Replace("\"", "");
+
+                        dbpassword = password;
+                    }
+                }
+
+                //Returns Server Information
+                String con = @"server=localhost; user id="+dbusername+";password="+dbpassword+"; database=chatapp";
                 return con;
             }
         }

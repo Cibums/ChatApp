@@ -1,0 +1,4 @@
+If your local database have a different login, please change these values.
+
+username: "root"
+password: ""
