@@ -12,7 +12,7 @@ namespace SQLRegistration
     public static class Controller
     {
         //Forms
-        public static Form1 loginForm;
+        public static LoginForm loginForm;
         public static RegisterForm registerForm;
         public static MainForm mainForm;
 
