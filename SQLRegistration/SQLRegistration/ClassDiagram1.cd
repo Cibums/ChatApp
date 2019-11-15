@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SQLRegistration.Connection">
+    <Position X="1.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAABAAgAAAQAAAAgAAAAAAAQAAA=</HashCode>
+      <FileName>Connection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLRegistration.Controller">
+    <Position X="2" Y="3.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIIBAAAAAEAAAAAgAAAAAAAAABAAgAAAAQAEAAAAA=</HashCode>
+      <FileName>Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLRegistration.Conversation">
+    <Position X="6.75" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAgAAAAAAAAAAAAAAAAQAAAwBAAAgAAAAAA=</HashCode>
+      <FileName>Conversation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLRegistration.Account">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAgAAAhAAABgAAAYAAEAAAAAAAAAAAhAAkAAAAA=</HashCode>
+      <FileName>Account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLRegistration.Chat">
+    <Position X="6.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Chat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLRegistration.Form1">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAEAAygAAhAAACSABAACgAAgAAAAAAQAgABQABA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLRegistration.MainForm">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIAABQiAwCQLQAAAYACIAAACAACAAAAEEAAAAAEgQQg=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLRegistration.Program">
+    <Position X="8.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLRegistration.RegisterForm">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAEoAiAAABAAAiCACAADAAAgAABAAAAAIABQAAA=</HashCode>
+      <FileName>RegisterForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLRegistration.SelectFriendsDialog">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACABAACAAABBAAAAAAAACAAAAA=</HashCode>
+      <FileName>SelectFriendsDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SQLRegistration.TextInputDialog">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAIAACAAAACAAAABBAAAEAAAABAAAA=</HashCode>
+      <FileName>TextInputDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
