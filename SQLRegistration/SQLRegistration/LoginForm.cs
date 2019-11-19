@@ -27,14 +27,12 @@ namespace SQLRegistration
         public LoginForm()
         {
             InitializeComponent();
-            
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
             //Tries to Log In
             Controller.Login(usernameTextBox.Text, Controller.HashPassword(passwordTextBox.Text));
-            
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -47,7 +45,6 @@ namespace SQLRegistration
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             //Trying to open the connection
             try
             {
@@ -57,14 +54,12 @@ namespace SQLRegistration
             catch
             {
                 //If the connection to the server isn't there, tell the user
-
                 Connection.isConnectedToTheServer = false;
 
                 MessageBox.Show("Not connected to the server! Follow readme.txt", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             //Creates other forms and making them reachable from the controller class
-
             Controller.loginForm = this;
 
             RegisterForm rf = new RegisterForm();
@@ -78,7 +73,6 @@ namespace SQLRegistration
             {
                 Application.Exit();
             }
-            
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -87,10 +81,12 @@ namespace SQLRegistration
             Application.Exit();
         }
 
+        /// <summary>
+        /// Tries to log in to account saved in local files
+        /// </summary>
         public static void LoginToSavedAccount()
         {
             //Gets the saved account ID
-
             int savedID = Account.GetSavedAccountID();
 
             //If there was an account saved, try to log in to the saved account
@@ -106,8 +102,6 @@ namespace SQLRegistration
                 {
                     MessageBox.Show("Couldn't Log In With Saved ID");
                 }
-
-
             }
         }
 
@@ -119,7 +113,6 @@ namespace SQLRegistration
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             //Drag and drop
-
             if (e.Button == MouseButtons.Left)
             {
                 ReleaseCapture();

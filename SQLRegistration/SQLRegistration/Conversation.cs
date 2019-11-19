@@ -10,9 +10,13 @@ namespace SQLRegistration
         public string conversationName;
         public List<int> usersInConversation;
 
-        //public static Conversation conversations;
         public static int activeConversationID = -1;
 
+        /// <summary>
+        /// Gets all conversation connected to a user with specific account ID
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static List<Conversation> GetConversations(int userID)
         {
             //Gets all conversation data
@@ -21,9 +25,9 @@ namespace SQLRegistration
             Connection.reader = Connection.command.ExecuteReader(); //Executes the query
 
             //Creates list of Conversation instances 
-
             List<Conversation> conversations = new List<Conversation>();
 
+            //Reads all conversations
             while (Connection.reader.Read())
             {
                 Conversation conv = new Conversation();
@@ -39,12 +43,9 @@ namespace SQLRegistration
                 foreach (string operand in operands)
                 {
                     string index = operand.Replace(" ", "");
-                    try
-                    {
-                        users.Add(Int32.Parse(index));
-                    }
-                    catch { }
-
+                    int indexInt;
+                    Int32.TryParse(index, out indexInt);
+                    users.Add(indexInt);
                 }
 
                 conv.usersInConversation = users;
@@ -63,12 +64,18 @@ namespace SQLRegistration
             return conversations;
         }
 
+        /// <summary>
+        /// Gets ID of conversation with specific name
+        /// </summary>
+        /// <param name="conversationName"></param>
+        /// <returns></returns>
         public static int GetConversationID(string conversationName)
         {
             //Creates SQL-query, selectes conversation with name
             String sql = @"SELECT * FROM `conversations` WHERE `name`='" + conversationName + "';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
-            Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+            //Executes the query
+            Connection.reader = Connection.command.ExecuteReader();
             Connection.reader.Read();
 
             int id = Int32.Parse(Connection.reader[0].ToString());
@@ -78,10 +85,13 @@ namespace SQLRegistration
             return id;
         }
 
+        /// <summary>
+        /// Adds user to conversation
+        /// </summary>
+        /// <param name="useriD"></param>
+        /// <param name="conversationID"></param>
         public static void AddUser(int useriD, int conversationID)
         {
-            //Adds user to conversation
-
             //Selects data from conversation with ID of the active conversation
             String sql = @"SELECT * FROM `conversations` WHERE `ID`='" + activeConversationID + @"';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
@@ -103,21 +113,26 @@ namespace SQLRegistration
 
             sql = @"UPDATE `conversations` SET `userIDsString`='" + usersString +"' WHERE `ID`= " + activeConversationID + ";";
             Connection.command = new MySqlCommand(sql, Connection.connection);
-            Connection.reader = Connection.command.ExecuteReader(); //Execute query
+            //Execute query
+            Connection.reader = Connection.command.ExecuteReader(); 
             Connection.reader.Close();
         }
 
+        /// <summary>
+        /// Selects conversation with specific ID
+        /// </summary>
+        /// <param name="conversationID"></param>
+        /// <returns></returns>
         public static List<int> GetConversationUsers(int conversationID)
         {
-            //Selects conversation from ID
+            //Creates sql-statement, selects conversation from ID
             String sql = @"SELECT * FROM `conversations` WHERE `ID`='" + conversationID + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
 
-            try
+            if (Connection.reader.IsClosed != true)
             {
                 Connection.reader.Close();
             }
-            catch { }
 
             Connection.reader = Connection.command.ExecuteReader(); //Executes the query
             Connection.reader.Read();
@@ -133,24 +148,19 @@ namespace SQLRegistration
             string[] operands = Regex.Split(Connection.reader[2].ToString(), @"\s+");
 
             //Gets and returns a list of the IDs of all users in this specific conversation
-
-            List<int> returnValue = new List<int>();
+            List<int> userFriendsIds = new List<int>();
 
             foreach (string operand in operands)
             {
-                string index = operand.Replace(" ", "");
-                try
-                {
-                    returnValue.Add(Int32.Parse(index));
-                }
-                catch { }
-
+                string id = operand.Replace(" ", "");
+                int idInt;
+                Int32.TryParse(id, out idInt);
+                userFriendsIds.Add(idInt);
             }
-
 
             Connection.reader.Close();
 
-            return returnValue;
+            return userFriendsIds;
         }
     }
 }

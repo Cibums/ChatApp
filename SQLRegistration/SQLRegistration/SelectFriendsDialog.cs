@@ -39,7 +39,6 @@ namespace SQLRegistration
                     return;
                 }
 
-
                 //Ads friend to active conversation
                 Conversation.AddUser(id, Conversation.activeConversationID);
 
@@ -73,9 +72,7 @@ namespace SQLRegistration
                 return;
             }
 
-
             //Updates friend list
-
             friendListBox.Items.Clear();
 
             foreach (int i in allFriends)

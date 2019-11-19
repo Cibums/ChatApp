@@ -15,6 +15,10 @@ namespace SQLRegistration
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Updates the information displayed in the main form to the information of a specific account
+        /// </summary>
+        /// <param name="account"></param>
         public void UpdateUserInformation(Account account)
         {
             //If there's already a user specific button: delete it before creating new
@@ -29,21 +33,20 @@ namespace SQLRegistration
             menuStrip.Items.Insert(0, tsmi);
         }
 
-        //When form is closing
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Quits the whole application (including other hidden forms)
             Application.Exit();
         }
 
-        //When form is shown
         private void MainForm_Shown(object sender, EventArgs e)
         {
-
             UpdateConversations();
-            
         }
 
+        /// <summary>
+        /// Updates the list of conversations
+        /// </summary>
         public void UpdateConversations()
         {
             //Removes currently showing conversation in the list of conversations
@@ -64,7 +67,6 @@ namespace SQLRegistration
             {
                 File.Delete(Application.LocalUserAppDataPath + @"\a.ca");
             }
- 
 
             //Log out the user
             Connection.loggedInUserID = -1;
@@ -76,6 +78,7 @@ namespace SQLRegistration
 
         private void conversationList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Changes activeConversationID to clicked conversation
             if(sender.GetType() == typeof(ListView))
             {
                 ListView myList = (ListView)sender;
@@ -88,6 +91,7 @@ namespace SQLRegistration
                 Conversation.activeConversationID = Conversation.GetConversationID(myList.SelectedItems[0].Text);
             }
 
+            //Shows chat panel
             conversationList.Visible = false;
             conversationPanel.Visible = true;
 
@@ -107,6 +111,9 @@ namespace SQLRegistration
             UpdateChat();
         }
 
+        /// <summary>
+        /// Shows the list of conversations
+        /// </summary>
         public void GoHome()
         {
             //Goes to conversation list
@@ -121,22 +128,25 @@ namespace SQLRegistration
             GoHome();
         }
 
+        /// <summary>
+        /// Updates the messages shown in the chat
+        /// </summary>
         public void UpdateChat()
         {
             //Removes all messages currently shown
             messagesList.Items.Clear();
 
             //Gets all messages in active conversation
-            String sql = @"SELECT * FROM `messages` WHERE `conversationID`='" + Conversation.activeConversationID.ToString() + @"'";
+            string sql = @"SELECT * FROM `messages` WHERE `conversationID`='" + Conversation.activeConversationID.ToString() + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
 
-            try
+            if (Connection.reader.IsClosed != true)
             {
                 Connection.reader.Close();
             }
-            catch { }
 
-            Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+            //Executes the query
+            Connection.reader = Connection.command.ExecuteReader();
 
             List<int> messageIDs = new List<int>();
 
@@ -144,31 +154,33 @@ namespace SQLRegistration
             {
                 string message = Connection.reader[3].ToString();
 
-                messagesList.Items.Add(message); //Adds message to list of messages
-                messageIDs.Add(Int32.Parse(Connection.reader[2].ToString())); //Adds the ID of the message to a list
-                
+                //Adds message to list of messages
+                messagesList.Items.Add(message);
+                //Adds the ID of the message to a list
+                messageIDs.Add(Int32.Parse(Connection.reader[2].ToString()));
             }
 
 
 
             //Show all messages
-
             int index = 0;
             List<string> finalStrings = new List<string>();
 
+            //Adds the first names of the senders of all the messages ro the messages
             foreach (string item in messagesList.Items)
             {
                 string s = "";
 
-                try
+                if (Account.GetAccount(messageIDs[index]).firstname + ": " + item != null)
                 {
                     s = Account.GetAccount(messageIDs[index]).firstname + ": " + item;
-                }catch{}
+                }
 
                 finalStrings.Add(s);
                 index++;
             }
 
+            //Update the messages to show the first names of the senders
             for (int i = 0; i < messagesList.Items.Count; i++)
             {
                 messagesList.Items[i] = finalStrings[i];
@@ -183,7 +195,6 @@ namespace SQLRegistration
             //Deselects selected alterantives in check box list
             messagesList.SelectedIndex = messagesList.Items.Count - 1;
             messagesList.SelectedIndex = -1;
-
         }
 
         private void messagesList_SelectedIndexChanged(object sender, EventArgs e)

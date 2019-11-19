@@ -11,7 +11,6 @@ namespace SQLRegistration
     public class Account
     {
         //Account information variables
-
         public string username;
         public string password;
         public string email;
@@ -19,6 +18,11 @@ namespace SQLRegistration
         public string lastname;
         public string friendsUserIDs;
 
+        /// <summary>
+        /// Returns account with specific account ID
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         public static Account GetAccount(int ID)
         {
             //Varibales
@@ -30,19 +34,19 @@ namespace SQLRegistration
             string friendListString;
 
             //Creates SQL-query, selectes user with specific ID
-            String sql = @"SELECT * FROM `users` WHERE `ID`='" + ID.ToString() + @"'";
+            string sql = @"SELECT * FROM `users` WHERE `ID`='" + ID.ToString() + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
 
-            try
+            if (Connection.reader.IsClosed != true)
             {
                 Connection.reader.Close();
             }
-            catch { }
 
             Connection.reader = Connection.command.ExecuteReader(); //Executes the query
             Connection.reader.Read();
 
-            if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users with ID)
+            //Checks if the table has any rows (if there are any users with ID)
+            if (Connection.reader.HasRows)
             {
                 //Setting variables
                 username = Connection.reader[1].ToString();
@@ -71,18 +75,20 @@ namespace SQLRegistration
 
             //Didn't find an account
             return null;
-
-
         }
 
+        /// <summary>
+        /// Returns ID of any account with a specific username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static int GetAccountID(string username)
         {
             //Creates SQL-query, selectes user with specific username
-            String sql = @"SELECT * FROM `users` WHERE `username`='" + username + @"'";
+            string sql = @"SELECT * FROM `users` WHERE `username`='" + username + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             Connection.reader = Connection.command.ExecuteReader(); //Executes the query
             Connection.reader.Read();
-
 
             //Get and return id of user
             int id = Int32.Parse(Connection.reader[0].ToString());
@@ -91,11 +97,13 @@ namespace SQLRegistration
             return id;
         }
 
+        /// <summary>
+        /// Checks if the username follows some specific rule
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public static bool IsValidUsername(string username)
         {
-            //Checks if the username follows some specific rule
-
-
             //Checks if the username doesn't contain any special characters
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
 
@@ -110,11 +118,13 @@ namespace SQLRegistration
             return !isTooLong(username, 8);
         }
 
+        /// <summary>
+        /// Checks if the password follows some specific rule
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static bool IsValidPassword(string password)
         {
-            //Checks if the password follows some specific rule
-
-
             //Checks if the password doesn't contain any special characters
             var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
 
@@ -124,18 +134,17 @@ namespace SQLRegistration
             }
 
             //Checks if passowrd has at least one digit and one letter
-
             bool isLetter = false;
             bool isDigit = false;
 
             foreach (char c in password)
             {
-                if (Controller.IsLetter(c))
+                if (Controller.IsLetter(c) && isLetter == false)
                 {
                     isLetter = true;
                 }
 
-                if (Controller.IsDigit(c))
+                if (Controller.IsDigit(c) && isDigit == false)
                 {
                     isDigit = true;
                 }
@@ -149,9 +158,13 @@ namespace SQLRegistration
             return false;
         }
 
+        /// <summary>
+        /// Checks if email is an actual email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         public static bool IsValidEmail(string email)
         {
-            //Checks if email is an actual email
             try
             {
                 var addr = new System.Net.Mail.MailAddress(email);
@@ -163,6 +176,10 @@ namespace SQLRegistration
             }
         }
 
+        /// <summary>
+        /// Searches for a saved account in the local files and returns the account ID
+        /// </summary>
+        /// <returns></returns>
         public static int GetSavedAccountID()
         {
             //Checks if there is a saved account
@@ -175,26 +192,27 @@ namespace SQLRegistration
                 fs.Close();
                 return acc;
             }
-
-            
-
-            //Didn't find a saved accoun
+            //Didn't find a saved account
 
             //returns an impossible ID (-1)
             return -1;
         }
 
+        /// <summary>
+        /// Returns list of Ids of the friends of user with specific account ID
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static List<int> GetFriends(int userID)
         {
             //Creates SQL-query, selectes logged in user's id
-            String sql = @"SELECT `frienduserIDsString` FROM `users` WHERE `ID`='" + userID + @"'";
+            string sql = @"SELECT `frienduserIDsString` FROM `users` WHERE `ID`='" + userID + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
 
-            try
+            if (Connection.reader.IsClosed != true)
             {
                 Connection.reader.Close();
             }
-            catch { }
 
             Connection.reader = Connection.command.ExecuteReader(); //Executes the query
             Connection.reader.Read();
@@ -210,25 +228,20 @@ namespace SQLRegistration
             string[] operands = Regex.Split(Connection.reader[0].ToString(), @"\s+");
 
             //Returns list of friends' ids
-
-            List<int> returnValue = new List<int>();
+            List<int> userFriendsIds = new List<int>();
 
             foreach (string operand in operands)
             {
-                string index = operand.Replace(" ", "");
-                try
-                {
-                    returnValue.Add(Int32.Parse(index));
-                }
-                catch { }
+                string id = operand.Replace(" ", "");
 
+                int idString;
+                Int32.TryParse(id, out idString);
+                userFriendsIds.Add(idString);
             }
-
 
             Connection.reader.Close();
 
-            return returnValue;
+            return userFriendsIds;
         }
-
     }
 }

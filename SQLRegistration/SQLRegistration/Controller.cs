@@ -16,10 +16,17 @@ namespace SQLRegistration
         public static RegisterForm registerForm;
         public static MainForm mainForm;
 
+        /// <summary>
+        /// Registers user
+        /// </summary>
+        /// <param name="usernameInput"></param>
+        /// <param name="passwordInput"></param>
+        /// <param name="emailInput"></param>
+        /// <param name="firstNameInput"></param>
+        /// <param name="lastNameInput"></param>
+        /// <returns></returns>
         public static bool Register(string usernameInput, string passwordInput, string emailInput, string firstNameInput, string lastNameInput)
         {
-            //Registers user 
-
             //Tries to select data from user with the same username or email
             String sql = @"SELECT * FROM `users` WHERE `username`='"+ usernameInput + @"' OR `email`='"+ emailInput + @"';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
@@ -49,7 +56,6 @@ namespace SQLRegistration
             Connection.reader.Close();
 
             //Checks if all inputs are valid
-
             if (!Account.IsValidUsername(usernameInput))
             {
                 MessageBox.Show("USERNAME CAN'T USE SPECIAL CHARACTERS OR CAN'T BE LONGER THAN 8 CHARACTERS");
@@ -71,7 +77,8 @@ namespace SQLRegistration
             //Inserts user into database
             sql = @"INSERT INTO users(username, password, email, firstname, lastname, frienduserIDsString) VALUES ('" + (usernameInput).ToLower() + "','" + HashPassword(passwordInput) + "','" + emailInput + "','" + firstNameInput + "','" + lastNameInput + "','" + "" + "')";
             Connection.command = new MySqlCommand(sql, Connection.connection);
-            Connection.reader = Connection.command.ExecuteReader(); //Execute query
+            //Execute query
+            Connection.reader = Connection.command.ExecuteReader(); 
             Connection.reader.Close();
 
             //Tries to log in to the newly created account
@@ -80,10 +87,13 @@ namespace SQLRegistration
             return true;
         }
 
+        /// <summary>
+        /// Returns an encrypted version of the password input
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static string HashPassword(string password)
         {
-
-            //Returns an encrypted version of the password input
             HashAlgorithm algorithm = SHA256.Create();
             byte[] hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(password));
 
@@ -94,21 +104,36 @@ namespace SQLRegistration
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Returns if character is a letter
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public static bool IsLetter(char c)
         {
             //If character is a letter: return true
             return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
         }
 
+        /// <summary>
+        /// Returns if character is a digit
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public static bool IsDigit(char c)
         {
             //If character is digit: return true
             return c >= '0' && c <= '9';
         }
 
+        /// <summary>
+        /// Tries to log in the user
+        /// </summary>
+        /// <param name="usernameInput"></param>
+        /// <param name="passwordInput"></param>
+        /// <returns></returns>
         public static bool Login(string usernameInput, string passwordInput)
         {
-
             //If there's no connection to the server, return false
             if (!Connection.isConnectedToTheServer)
             {
@@ -120,9 +145,9 @@ namespace SQLRegistration
             //Create SQL-query (gets the users with spcific username)
             String sql = @"SELECT * FROM `users` WHERE `username`='" + usernameInputLower + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
-            Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+            //Executes the query
+            Connection.reader = Connection.command.ExecuteReader(); 
             Connection.reader.Read();
-            
 
             if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users found)
             {
@@ -148,7 +173,6 @@ namespace SQLRegistration
             {
                 //A user with that username wasn't found
                 MessageBox.Show("Invalid Account! Wrong Username or Password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
 
             Connection.reader.Close();
@@ -156,6 +180,10 @@ namespace SQLRegistration
             return false;
         }
 
+        /// <summary>
+        /// Changes information to the information of the logged in user and saves the logged in user ID to local files
+        /// </summary>
+        /// <param name="userID"></param>
         public static void LoginSucceeded(int userID)
         {
             //Sets the userID variable to the ID of the logged in user
@@ -180,7 +208,5 @@ namespace SQLRegistration
             mainForm.UpdateUserInformation(Account.GetAccount(userID));
             mainForm.GoHome();
         }
-
-        
     }
 }

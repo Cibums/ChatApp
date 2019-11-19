@@ -12,6 +12,10 @@ namespace SQLRegistration
 {
     public static class Chat
     {
+        /// <summary>
+        /// Inserts message in database
+        /// </summary>
+        /// <param name="message"></param>
         public static void Send(string message)
         {
             //Puts a message into the database

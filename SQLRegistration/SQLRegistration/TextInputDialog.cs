@@ -12,13 +12,19 @@ namespace SQLRegistration
 {
     public partial class TextInputDialog : Form
     {
-        public string input = ""; //input is reachable from other classes
+        //Input is reachable from other classes
+        public string input = "";
 
         public TextInputDialog()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Sets the question and the text on the button in the dialog window
+        /// </summary>
+        /// <param name="Question"></param>
+        /// <param name="ButtonText"></param>
         public void SetDialogSettings(string Question, string ButtonText)
         {
             //Sets the dialog settings
@@ -32,6 +38,5 @@ namespace SQLRegistration
             this.input = dialogInput.Text;
             this.DialogResult = DialogResult.OK;
         }
-
     }
 }

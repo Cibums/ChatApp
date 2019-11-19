@@ -15,10 +15,9 @@ namespace SQLRegistration
 
         public static string GetConnectionString
         {
-            get{
-
+            get
+            {
                 //Reads config.txt
-
                 string dbusername = "";
                 string dbpassword = "";
 
@@ -32,8 +31,7 @@ namespace SQLRegistration
 
                         dbusername = username;
                     }
-
-                    if (line.Contains("password: "))
+                    else if (line.Contains("password: "))
                     {
                         string password = line;
                         password = password.Replace("password: ", "");

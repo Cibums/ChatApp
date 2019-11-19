@@ -39,7 +39,6 @@ namespace SQLRegistration
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             //Drag and drop
-            
             if (e.Button == MouseButtons.Left)
             {
                 ReleaseCapture();
