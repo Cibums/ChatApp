@@ -37,12 +37,13 @@ namespace SQLRegistration
             string sql = @"SELECT * FROM `users` WHERE `ID`='" + ID.ToString() + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
 
-            if (Connection.reader.IsClosed != true)
+            if (Connection.reader != null && Connection.reader.IsClosed != true)
             {
                 Connection.reader.Close();
             }
 
-            Connection.reader = Connection.command.ExecuteReader(); //Executes the query
+            //Executes the query
+            Connection.reader = Connection.command.ExecuteReader(); 
             Connection.reader.Read();
 
             //Checks if the table has any rows (if there are any users with ID)

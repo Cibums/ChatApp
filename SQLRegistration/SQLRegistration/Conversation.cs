@@ -20,7 +20,7 @@ namespace SQLRegistration
         public static List<Conversation> GetConversations(int userID)
         {
             //Gets all conversation data
-            String sql = @"SELECT * FROM `conversations`;";
+            string sql = @"SELECT * FROM `conversations`;";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             Connection.reader = Connection.command.ExecuteReader(); //Executes the query
 
@@ -72,7 +72,7 @@ namespace SQLRegistration
         public static int GetConversationID(string conversationName)
         {
             //Creates SQL-query, selectes conversation with name
-            String sql = @"SELECT * FROM `conversations` WHERE `name`='" + conversationName + "';";
+            string sql = @"SELECT * FROM `conversations` WHERE `name`='" + conversationName + "';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             //Executes the query
             Connection.reader = Connection.command.ExecuteReader();
@@ -93,7 +93,7 @@ namespace SQLRegistration
         public static void AddUser(int useriD, int conversationID)
         {
             //Selects data from conversation with ID of the active conversation
-            String sql = @"SELECT * FROM `conversations` WHERE `ID`='" + activeConversationID + @"';";
+            string sql = @"SELECT * FROM `conversations` WHERE `ID`='" + activeConversationID + @"';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             Connection.reader = Connection.command.ExecuteReader(); //Execute query
             Connection.reader.Read();
@@ -126,7 +126,7 @@ namespace SQLRegistration
         public static List<int> GetConversationUsers(int conversationID)
         {
             //Creates sql-statement, selects conversation from ID
-            String sql = @"SELECT * FROM `conversations` WHERE `ID`='" + conversationID + @"'";
+            string sql = @"SELECT * FROM `conversations` WHERE `ID`='" + conversationID + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
 
             if (Connection.reader.IsClosed != true)

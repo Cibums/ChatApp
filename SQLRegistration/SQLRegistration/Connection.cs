@@ -1,14 +1,14 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.IO;
-using System.Windows.Forms;
 
 namespace SQLRegistration
 {
     static class Connection
     {
         public static MySqlConnection connection = new MySqlConnection(GetConnectionString);
-        public static bool isConnectedToTheServer = false; //Assumes that the connection won't work
+        //Assumes that the connection won't work
+        public static bool isConnectedToTheServer = false;
         public static MySqlCommand command;
         public static MySqlDataReader reader;
         public static int loggedInUserID = -1;
@@ -42,7 +42,7 @@ namespace SQLRegistration
                 }
 
                 //Returns Server Information
-                String con = @"server=localhost; user id="+dbusername+";password="+dbpassword+"; database=chatapp";
+                string con = @"server=localhost; user id="+dbusername+";password="+dbpassword+"; database=chatapp";
                 return con;
             }
         }

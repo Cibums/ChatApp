@@ -28,9 +28,10 @@ namespace SQLRegistration
         public static bool Register(string usernameInput, string passwordInput, string emailInput, string firstNameInput, string lastNameInput)
         {
             //Tries to select data from user with the same username or email
-            String sql = @"SELECT * FROM `users` WHERE `username`='"+ usernameInput + @"' OR `email`='"+ emailInput + @"';";
+            string sql = @"SELECT * FROM `users` WHERE `username`='"+ usernameInput + @"' OR `email`='"+ emailInput + @"';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
-            Connection.reader = Connection.command.ExecuteReader(); //Execute query
+            //Execute query
+            Connection.reader = Connection.command.ExecuteReader(); 
             Connection.reader.Read();
 
             //If user already exists in database
@@ -75,7 +76,10 @@ namespace SQLRegistration
             }
 
             //Inserts user into database
-            sql = @"INSERT INTO users(username, password, email, firstname, lastname, frienduserIDsString) VALUES ('" + (usernameInput).ToLower() + "','" + HashPassword(passwordInput) + "','" + emailInput + "','" + firstNameInput + "','" + lastNameInput + "','" + "" + "')";
+            sql = @"INSERT INTO users(
+                    username, password, email, firstname, lastname, frienduserIDsString)
+                    VALUES ('" + (usernameInput).ToLower() + "','" + HashPassword(passwordInput)
+                    + "','" + emailInput + "','" + firstNameInput + "','" + lastNameInput + "','" + "" + "')";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             //Execute query
             Connection.reader = Connection.command.ExecuteReader(); 
@@ -143,7 +147,7 @@ namespace SQLRegistration
             string usernameInputLower = usernameInput.ToLower(); 
 
             //Create SQL-query (gets the users with spcific username)
-            String sql = @"SELECT * FROM `users` WHERE `username`='" + usernameInputLower + @"'";
+            string sql = @"SELECT * FROM `users` WHERE `username`='" + usernameInputLower + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             //Executes the query
             Connection.reader = Connection.command.ExecuteReader(); 
@@ -166,13 +170,17 @@ namespace SQLRegistration
                 else
                 {
                     //Username or password didn't match
-                    MessageBox.Show("Invalid Account! Wrong Username or Password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(
+                        "Invalid Account! Wrong Username or Password", "Message",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
                 //A user with that username wasn't found
-                MessageBox.Show("Invalid Account! Wrong Username or Password", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Invalid Account! Wrong Username or Password", "Message",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             Connection.reader.Close();
