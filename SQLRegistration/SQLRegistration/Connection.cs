@@ -13,6 +13,9 @@ namespace SQLRegistration
         public static MySqlDataReader reader;
         public static int loggedInUserID = -1;
 
+        /// <summary>
+        /// Gets Connection Information
+        /// </summary>
         public static string GetConnectionString
         {
             get
