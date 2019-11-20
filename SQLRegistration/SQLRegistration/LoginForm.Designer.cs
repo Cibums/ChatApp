@@ -54,7 +54,7 @@
             this.loginPanel.Controls.Add(this.usernameTitleLabel);
             this.loginPanel.Controls.Add(this.usernameTextBox);
             this.loginPanel.Location = new System.Drawing.Point(24, 171);
-            this.loginPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.loginPanel.Margin = new System.Windows.Forms.Padding(2);
             this.loginPanel.Name = "loginPanel";
             this.loginPanel.Size = new System.Drawing.Size(231, 199);
             this.loginPanel.TabIndex = 0;
@@ -81,7 +81,7 @@
             this.loginButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.loginButton.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loginButton.Location = new System.Drawing.Point(0, 157);
-            this.loginButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.loginButton.Margin = new System.Windows.Forms.Padding(2);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(231, 42);
             this.loginButton.TabIndex = 3;
@@ -105,7 +105,7 @@
             this.passwordTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.passwordTextBox.Location = new System.Drawing.Point(1, 77);
-            this.passwordTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passwordTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(230, 20);
@@ -127,7 +127,7 @@
             this.usernameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.usernameTextBox.Location = new System.Drawing.Point(1, 24);
-            this.usernameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.usernameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(230, 20);
             this.usernameTextBox.TabIndex = 0;
@@ -139,12 +139,11 @@
             this.closeButton.BackgroundImage = global::SQLRegistration.Properties.Resources.closeicon;
             this.closeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.closeButton.Location = new System.Drawing.Point(256, 0);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(2);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(22, 24);
             this.closeButton.TabIndex = 2;
             this.closeButton.UseVisualStyleBackColor = false;
-            this.closeButton.Visible = false;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // headerImage
@@ -153,7 +152,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.headerImage.Image = global::SQLRegistration.Properties.Resources.chatapplogopng;
             this.headerImage.Location = new System.Drawing.Point(0, 0);
-            this.headerImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.headerImage.Margin = new System.Windows.Forms.Padding(2);
             this.headerImage.Name = "headerImage";
             this.headerImage.Size = new System.Drawing.Size(279, 144);
             this.headerImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -161,7 +160,7 @@
             this.headerImage.TabStop = false;
             this.headerImage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             // 
-            // Form1
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -171,8 +170,8 @@
             this.Controls.Add(this.headerImage);
             this.Controls.Add(this.loginPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login | Chat App";
             this.Load += new System.EventHandler(this.Form1_Load);

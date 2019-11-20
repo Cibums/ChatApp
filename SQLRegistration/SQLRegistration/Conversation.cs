@@ -129,7 +129,7 @@ namespace SQLRegistration
             string sql = @"SELECT * FROM `conversations` WHERE `ID`='" + conversationID + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
 
-            if (Connection.reader.IsClosed != true)
+            if (Connection.reader != null && Connection.reader.IsClosed != true)
             {
                 Connection.reader.Close();
             }
