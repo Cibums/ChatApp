@@ -23,7 +23,8 @@ namespace SQLRegistration
         {
             string friendsAdded = "";
 
-            List<int> conversationUsersIDs = Conversation.GetConversationUsers(Conversation.activeConversationID);
+            List<int> conversationUsersIDs = 
+                Conversation.GetConversationUsers(Conversation.activeConversationID);
 
             bool first = true;
 
@@ -54,7 +55,12 @@ namespace SQLRegistration
             }
 
             //Tell the user which users were added
-            MessageBox.Show("Added " + friendsAdded + " to this conversation", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(
+                "Added " + friendsAdded + " to this conversation", 
+                "Added", 
+                MessageBoxButtons.OK, 
+                MessageBoxIcon.Information
+                );
 
             Close();
         }
@@ -67,7 +73,12 @@ namespace SQLRegistration
             //If the user doesn't have any friends: Tell the user and continue
             if (allFriends == null)
             {
-                MessageBox.Show("You don't have nay friends yet", "No Friends Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "You don't have nay friends yet", 
+                    "No Friends Added", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information
+                    );
                 this.Close();
                 return;
             }

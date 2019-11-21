@@ -72,7 +72,8 @@ namespace SQLRegistration
         public static int GetConversationID(string conversationName)
         {
             //Creates SQL-query, selectes conversation with name
-            string sql = @"SELECT * FROM `conversations` WHERE `name`='" + conversationName + "';";
+            string sql = @"SELECT * FROM `conversations` WHERE `name`='" 
+                        + conversationName + "';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             //Executes the query
             Connection.reader = Connection.command.ExecuteReader();
@@ -93,7 +94,8 @@ namespace SQLRegistration
         public static void AddUser(int useriD, int conversationID)
         {
             //Selects data from conversation with ID of the active conversation
-            string sql = @"SELECT * FROM `conversations` WHERE `ID`='" + activeConversationID + @"';";
+            string sql = @"SELECT * FROM `conversations` WHERE `ID`='" 
+                        + activeConversationID + @"';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             Connection.reader = Connection.command.ExecuteReader(); //Execute query
             Connection.reader.Read();
@@ -111,7 +113,8 @@ namespace SQLRegistration
 
             usersString += " "+useriD.ToString();
 
-            sql = @"UPDATE `conversations` SET `userIDsString`='" + usersString +"' WHERE `ID`= " + activeConversationID + ";";
+            sql = @"UPDATE `conversations` SET `userIDsString`='" 
+                + usersString +"' WHERE `ID`= " + activeConversationID + ";";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             //Execute query
             Connection.reader = Connection.command.ExecuteReader(); 
@@ -126,7 +129,8 @@ namespace SQLRegistration
         public static List<int> GetConversationUsers(int conversationID)
         {
             //Creates sql-statement, selects conversation from ID
-            string sql = @"SELECT * FROM `conversations` WHERE `ID`='" + conversationID + @"'";
+            string sql = @"SELECT * FROM `conversations` WHERE `ID`='" 
+                        + conversationID + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
 
             if (Connection.reader != null && Connection.reader.IsClosed != true)

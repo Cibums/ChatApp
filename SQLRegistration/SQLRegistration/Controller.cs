@@ -147,7 +147,8 @@ namespace SQLRegistration
             string usernameInputLower = usernameInput.ToLower(); 
 
             //Create SQL-query (gets the users with spcific username)
-            string sql = @"SELECT * FROM `users` WHERE `username`='" + usernameInputLower + @"'";
+            string sql = @"SELECT * FROM `users` WHERE `username`='" 
+                        + usernameInputLower + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             //Executes the query
             Connection.reader = Connection.command.ExecuteReader(); 
@@ -156,7 +157,8 @@ namespace SQLRegistration
             if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users found)
             {
                 //Checking if username and password match a user in the table
-                if (usernameInputLower == (Connection.reader[1].ToString()).ToLower() && passwordInput == Connection.reader[2].ToString())
+                if (usernameInputLower == (Connection.reader[1].ToString())
+                    .ToLower() && passwordInput == Connection.reader[2].ToString())
                 {
                     //Login Succeeded
 
@@ -204,7 +206,8 @@ namespace SQLRegistration
             {
                 //Create new data
                 BinaryFormatter bf = new BinaryFormatter();
-                FileStream fs = new FileStream(Application.LocalUserAppDataPath + @"\a.ca", FileMode.Create);
+                FileStream fs = new FileStream(Application.LocalUserAppDataPath 
+                                                + @"\a.ca", FileMode.Create);
                 bf.Serialize(fs, userID);
                 fs.Close();
             }

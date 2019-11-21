@@ -88,7 +88,8 @@ namespace SQLRegistration
                     return;
                 }
 
-                Conversation.activeConversationID = Conversation.GetConversationID(myList.SelectedItems[0].Text);
+                Conversation.activeConversationID = 
+                    Conversation.GetConversationID(myList.SelectedItems[0].Text);
             }
 
             //Shows chat panel
@@ -137,7 +138,8 @@ namespace SQLRegistration
             messagesList.Items.Clear();
 
             //Gets all messages in active conversation
-            string sql = @"SELECT * FROM `messages` WHERE `conversationID`='" + Conversation.activeConversationID.ToString() + @"'";
+            string sql = @"SELECT * FROM `messages` WHERE `conversationID`='" 
+                        + Conversation.activeConversationID.ToString() + @"'";
             Connection.command = new MySqlCommand(sql, Connection.connection);
 
             if (Connection.reader.IsClosed != true)
@@ -215,7 +217,8 @@ namespace SQLRegistration
             if (aff.DialogResult == DialogResult.OK)
             {
                 //Gets all data from the user with the specific ID
-                String sql = @"SELECT * FROM `users` WHERE `ID`='" + Connection.loggedInUserID + @"';";
+                String sql = @"SELECT * FROM `users` WHERE `ID`='" 
+                            + Connection.loggedInUserID + @"';";
                 Connection.command = new MySqlCommand(sql, Connection.connection);
                 Connection.reader = Connection.command.ExecuteReader(); //Executes the query
                 Connection.reader.Read();
@@ -246,7 +249,9 @@ namespace SQLRegistration
                 if (Connection.reader.HasRows) //Checks if the table has any rows (if there are any users with that username)
                 {
                     //Updates the friend list
-                    String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" + frienduserIDsString + " " + Connection.reader[0] + "' WHERE `ID`='" + Connection.loggedInUserID + "';";
+                    String updateFriendSql = @"UPDATE `users` SET `frienduserIDsString`='" 
+                                            + frienduserIDsString + " " + Connection.reader[0] 
+                                            + "' WHERE `ID`='" + Connection.loggedInUserID + "';";
                     Connection.reader.Close();
                     Connection.command = new MySqlCommand(updateFriendSql, Connection.connection);
                     Connection.reader = Connection.command.ExecuteReader(); //Executes the query
@@ -254,7 +259,12 @@ namespace SQLRegistration
                 else
                 {
                     //There's no user with the same username as the input
-                    MessageBox.Show("Can't find the user " + aff.input, "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show(
+                        "Can't find the user " + aff.input, 
+                        "Something went wrong", 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Exclamation
+                        );
                 }
 
                 Connection.reader.Close();
@@ -279,12 +289,18 @@ namespace SQLRegistration
                 if (dialog.input == "")
                 {
                     //The user didn't write anything as an input
-                    MessageBox.Show("You have to name the conversation soemthing", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "You have to name the conversation soemthing", 
+                        "Failed", 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Warning
+                        );
                     return;
                 }
 
                 //Creates a conversation in the database
-                string sql = @"INSERT INTO conversations(name, userIDsString) VALUES ('" + dialog.input + "'," + Connection.loggedInUserID + ")";
+                string sql = @"INSERT INTO conversations(name, userIDsString) VALUES ('" 
+                            + dialog.input + "'," + Connection.loggedInUserID + ")";
                 Connection.command = new MySqlCommand(sql, Connection.connection);
                 Connection.reader = Connection.command.ExecuteReader(); //Execute query
                 Connection.reader.Close();

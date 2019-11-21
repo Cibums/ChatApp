@@ -24,7 +24,9 @@ namespace SQLRegistration
                 string dbusername = "";
                 string dbpassword = "";
 
-                foreach (string line in File.ReadAllLines(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.Parent.FullName + @"\config.txt"))
+                foreach (string line in File.ReadAllLines(Directory.GetParent(
+                    AppDomain.CurrentDomain.BaseDirectory
+                    ).Parent.Parent.Parent.Parent.FullName + @"\config.txt"))
                 {
                     if (line.Contains("username: "))
                     {
@@ -45,7 +47,8 @@ namespace SQLRegistration
                 }
 
                 //Returns Server Information
-                string con = @"server=localhost; user id=" + dbusername + ";password=" + dbpassword +"; database=chatapp";
+                string con = @"server=localhost; user id=" + dbusername 
+                            + ";password=" + dbpassword +"; database=chatapp";
                 return con;
             }
         }

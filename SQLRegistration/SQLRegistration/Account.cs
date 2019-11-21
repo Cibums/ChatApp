@@ -236,8 +236,10 @@ namespace SQLRegistration
                 string id = operand.Replace(" ", "");
 
                 int idString;
-                Int32.TryParse(id, out idString);
-                userFriendsIds.Add(idString);
+                if(Int32.TryParse(id, out idString))
+                {
+                    userFriendsIds.Add(idString);
+                }
             }
 
             Connection.reader.Close();
