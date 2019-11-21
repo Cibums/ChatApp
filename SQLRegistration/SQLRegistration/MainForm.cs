@@ -160,8 +160,6 @@ namespace SQLRegistration
                 messageIDs.Add(Int32.Parse(Connection.reader[2].ToString()));
             }
 
-
-
             //Show all messages
             int index = 0;
             List<string> finalStrings = new List<string>();

@@ -45,7 +45,7 @@ namespace SQLRegistration
                 }
 
                 //Returns Server Information
-                string con = @"server=localhost; user id="+dbusername+";password="+dbpassword+"; database=chatapp";
+                string con = @"server=localhost; user id=" + dbusername + ";password=" + dbpassword +"; database=chatapp";
                 return con;
             }
         }
