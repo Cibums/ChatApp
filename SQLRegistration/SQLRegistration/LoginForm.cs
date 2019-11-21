@@ -1,15 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using System.Threading;
-using System.IO;
 
 namespace SQLRegistration
 {
@@ -56,7 +46,12 @@ namespace SQLRegistration
                 //If the connection to the server isn't there, tell the user
                 Connection.isConnectedToTheServer = false;
 
-                MessageBox.Show("Not connected to the server! Follow readme.txt", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Not connected to the server! Follow readme.txt", 
+                    "ERROR", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error
+                    );
             }
 
             //Creates other forms and making them reachable from the controller class

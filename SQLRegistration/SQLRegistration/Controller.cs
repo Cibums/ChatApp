@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Security.Cryptography;
-using System.Collections.Generic;
 
 namespace SQLRegistration
 {
@@ -25,10 +24,17 @@ namespace SQLRegistration
         /// <param name="firstNameInput"></param>
         /// <param name="lastNameInput"></param>
         /// <returns></returns>
-        public static bool Register(string usernameInput, string passwordInput, string emailInput, string firstNameInput, string lastNameInput)
+        public static bool Register(
+            string usernameInput, 
+            string passwordInput, 
+            string emailInput, 
+            string firstNameInput, 
+            string lastNameInput
+            )
         {
             //Tries to select data from user with the same username or email
-            string sql = @"SELECT * FROM `users` WHERE `username`='"+ usernameInput + @"' OR `email`='"+ emailInput + @"';";
+            string sql = @"SELECT * FROM `users` WHERE `username`='" 
+                        + usernameInput + @"' OR `email`='"+ emailInput + @"';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             //Execute query
             Connection.reader = Connection.command.ExecuteReader(); 
@@ -59,7 +65,9 @@ namespace SQLRegistration
             //Checks if all inputs are valid
             if (!Account.IsValidUsername(usernameInput))
             {
-                MessageBox.Show("USERNAME CAN'T USE SPECIAL CHARACTERS OR CAN'T BE LONGER THAN 8 CHARACTERS");
+                MessageBox.Show(
+                    "USERNAME CAN'T USE SPECIAL CHARACTERS OR CAN'T BE LONGER THAN 8 CHARACTERS"
+                    );
                 return false;
             }
 
@@ -71,7 +79,10 @@ namespace SQLRegistration
 
             if (!Account.IsValidPassword(passwordInput))
             {
-                MessageBox.Show("PASSWORD HAS TO CONTAIN AT LEAST ONE CAPITAL LETTER AND ONE NUMBER AND CAN'T USE SPECIAL CHARACTERS");
+                MessageBox.Show(
+                    "PASSWORD HAS TO CONTAIN AT LEAST ONE CAPITAL LETTER "
+                   +"AND ONE NUMBER AND CAN'T USE SPECIAL CHARACTERS"
+                   );
                 return false;
             }
 
@@ -79,7 +90,8 @@ namespace SQLRegistration
             sql = @"INSERT INTO users(
                     username, password, email, firstname, lastname, frienduserIDsString)
                     VALUES ('" + (usernameInput).ToLower() + "','" + HashPassword(passwordInput)
-                    + "','" + emailInput + "','" + firstNameInput + "','" + lastNameInput + "','" + "" + "')";
+                    + "','" + emailInput + "','" + firstNameInput + "','" 
+                    + lastNameInput + "','" + "" + "')";
             Connection.command = new MySqlCommand(sql, Connection.connection);
             //Execute query
             Connection.reader = Connection.command.ExecuteReader(); 
@@ -144,12 +156,14 @@ namespace SQLRegistration
                 return false;
             }
 
-            string usernameInputLower = usernameInput.ToLower(); 
+            string usernameInputLower = usernameInput.ToLower();
 
             //Create SQL-query (gets the users with spcific username)
-            string sql = @"SELECT * FROM `users` WHERE `username`='" 
-                        + usernameInputLower + @"'";
+            string sql = @"SELECT * FROM `users` WHERE `username`= '" + usernameInputLower + "';";
             Connection.command = new MySqlCommand(sql, Connection.connection);
+            Connection.command.Parameters.Add(new MySqlParameter(usernameInput, MySqlDbType.String));
+            MessageBox.Show(Connection.command.CommandText);
+
             //Executes the query
             Connection.reader = Connection.command.ExecuteReader(); 
             Connection.reader.Read();
