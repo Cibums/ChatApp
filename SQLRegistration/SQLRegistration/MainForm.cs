@@ -157,7 +157,7 @@ namespace SQLRegistration
                 //Adds message to list of messages
                 messagesList.Items.Add(message);
                 //Adds the ID of the message to a list
-                messageIDs.Add(Int32.Parse(Connection.reader[2].ToString()));
+                messageIDs.Add(int.Parse(Connection.reader[2].ToString()));
             }
 
             //Show all messages
