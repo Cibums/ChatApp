@@ -92,7 +92,7 @@ namespace SQLRegistration
             Connection.reader.Read();
 
             //Get and return id of user
-            int id = Int32.Parse(Connection.reader[0].ToString());
+            int id = int.Parse(Connection.reader[0].ToString());
             Connection.reader.Close();
 
             return id;
@@ -236,7 +236,7 @@ namespace SQLRegistration
                 string id = operand.Replace(" ", "");
 
                 int idString;
-                if(Int32.TryParse(id, out idString))
+                if(int.TryParse(id, out idString))
                 {
                     userFriendsIds.Add(idString);
                 }
