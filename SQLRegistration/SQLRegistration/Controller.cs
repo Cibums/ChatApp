@@ -174,7 +174,7 @@ namespace SQLRegistration
                 if (usernameInputLower == (Connection.reader[1].ToString())
                     .ToLower() && passwordInput == Connection.reader[2].ToString())
                 {
-                    int id = Int32.Parse(Connection.reader[0].ToString());
+                    int id = int.Parse(Connection.reader[0].ToString());
 
                     LoginSucceeded(id);
                     Connection.reader.Close();
