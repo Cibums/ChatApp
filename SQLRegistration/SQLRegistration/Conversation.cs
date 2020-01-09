@@ -44,7 +44,7 @@ namespace SQLRegistration
                 {
                     string index = operand.Replace(" ", "");
                     int indexInt;
-                    Int32.TryParse(index, out indexInt);
+                    int.TryParse(index, out indexInt);
                     users.Add(indexInt);
                 }
 
@@ -79,7 +79,7 @@ namespace SQLRegistration
             Connection.reader = Connection.command.ExecuteReader();
             Connection.reader.Read();
 
-            int id = Int32.Parse(Connection.reader[0].ToString());
+            int id = int.Parse(Connection.reader[0].ToString());
 
             Connection.reader.Close();
 
@@ -158,7 +158,7 @@ namespace SQLRegistration
             {
                 string id = operand.Replace(" ", "");
                 int idInt;
-                Int32.TryParse(id, out idInt);
+                int.TryParse(id, out idInt);
                 userFriendsIds.Add(idInt);
             }
 
